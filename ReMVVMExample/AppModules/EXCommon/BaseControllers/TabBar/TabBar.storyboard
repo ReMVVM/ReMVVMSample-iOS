@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t9g-qB-XLQ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar View Controller-->
+        <scene sceneID="gJd-B4-6KN">
+            <objects>
+                <viewController id="t9g-qB-XLQ" customClass="TabBarViewController" customModule="ReMVVMExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PPO-8t-h7j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ni7-n0-Ra8">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="810"/>
+                                <connections>
+                                    <segue destination="hXm-mU-Yan" kind="embed" id="1SP-DZ-khE"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clJ-ps-f2A">
+                                <rect key="frame" x="0.0" y="810" width="414" height="86"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JV2-RK-90c">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="NmQ-cL-Isd"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="JV2-RK-90c" secondAttribute="trailing" id="6ri-MU-1eW"/>
+                                    <constraint firstItem="JV2-RK-90c" firstAttribute="top" secondItem="clJ-ps-f2A" secondAttribute="top" id="AoD-0G-32e"/>
+                                    <constraint firstItem="JV2-RK-90c" firstAttribute="leading" secondItem="clJ-ps-f2A" secondAttribute="leading" id="wtN-sz-La9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="clJ-ps-f2A" firstAttribute="leading" secondItem="trI-es-Gfb" secondAttribute="leading" id="Ifb-yh-D1k"/>
+                            <constraint firstItem="clJ-ps-f2A" firstAttribute="top" secondItem="ni7-n0-Ra8" secondAttribute="bottom" id="Q5l-tF-OKf"/>
+                            <constraint firstItem="clJ-ps-f2A" firstAttribute="bottom" secondItem="PPO-8t-h7j" secondAttribute="bottom" id="SJr-5m-BtE"/>
+                            <constraint firstItem="trI-es-Gfb" firstAttribute="trailing" secondItem="clJ-ps-f2A" secondAttribute="trailing" id="TMD-ka-ijd"/>
+                            <constraint firstItem="ni7-n0-Ra8" firstAttribute="leading" secondItem="trI-es-Gfb" secondAttribute="leading" id="WB2-pr-HEW"/>
+                            <constraint firstItem="trI-es-Gfb" firstAttribute="bottom" secondItem="JV2-RK-90c" secondAttribute="bottom" id="XqC-mJ-xSf"/>
+                            <constraint firstItem="ni7-n0-Ra8" firstAttribute="trailing" secondItem="trI-es-Gfb" secondAttribute="trailing" id="hCh-Yt-dFa"/>
+                            <constraint firstItem="ni7-n0-Ra8" firstAttribute="top" secondItem="PPO-8t-h7j" secondAttribute="top" id="yze-Ue-MTL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="trI-es-Gfb"/>
+                    </view>
+                    <connections>
+                        <outlet property="tabBarStackView" destination="JV2-RK-90c" id="g85-FP-KuA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hyE-2i-HJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76.811594202898561" y="203.57142857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uJy-L2-dE5">
+            <objects>
+                <navigationController id="hXm-mU-Yan" customClass="EXNavigationController" customModule="ReMVVMExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dbx-ML-8ry">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UNt-av-2PR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="906" y="204"/>
+        </scene>
+    </scenes>
+</document>

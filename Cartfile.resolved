@@ -1,0 +1,6 @@
+github "ReMVVM/ReMVVMExt-iOS" "19a3348b0a7b81db06fdfffd9151441abf2b6e32"
+github "ReactiveX/RxSwift" "5.0.1"
+github "RxSwiftCommunity/RxDataSources" "4.0.1"
+github "dgrzeszczak/Loaders" "4bdb7ef7e5060769d91a91bc57306d2e2ad23d0f"
+github "dgrzeszczak/MVVM" "1.0.1"
+github "dgrzeszczak/ReMVVM" "082eea70fe01eaa3420439f398c58d78aa6c58c4"

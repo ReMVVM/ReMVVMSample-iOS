@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PxE-oh-D0F">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Test Stack View Controller-->
+        <scene sceneID="Cq6-nW-DiQ">
+            <objects>
+                <viewController id="PxE-oh-D0F" customClass="TestStackViewController" customModule="ReMVVMExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sk2-Lm-vVm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="q8A-W1-EZM">
+                                <rect key="frame" x="20" y="408" width="374" height="80"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JXk-Zc-guo">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qb3-JC-u7D">
+                                                <rect key="frame" x="0.0" y="0.0" width="177" height="30"/>
+                                                <color key="backgroundColor" red="0.95294117649999999" green="0.43921568630000002" blue="0.12941176469999999" alpha="1" colorSpace="deviceRGB"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lT9-VT-Uum">
+                                                <rect key="frame" x="197" y="0.0" width="177" height="30"/>
+                                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HN0-pq-R3a">
+                                        <rect key="frame" x="0.0" y="50" width="374" height="30"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WiG-Ij-av7" firstAttribute="trailing" secondItem="q8A-W1-EZM" secondAttribute="trailing" constant="20" id="NVd-bK-U4T"/>
+                            <constraint firstItem="q8A-W1-EZM" firstAttribute="centerY" secondItem="Sk2-Lm-vVm" secondAttribute="centerY" id="kqA-VV-N3C"/>
+                            <constraint firstItem="q8A-W1-EZM" firstAttribute="leading" secondItem="WiG-Ij-av7" secondAttribute="leading" constant="20" id="rTp-h7-Us0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WiG-Ij-av7"/>
+                    </view>
+                    <connections>
+                        <outlet property="dismissModalButton" destination="HN0-pq-R3a" id="P6d-6S-RTr"/>
+                        <outlet property="modalButton" destination="lT9-VT-Uum" id="cca-ye-VlB"/>
+                        <outlet property="pushButton" destination="qb3-JC-u7D" id="BQr-a3-7Qg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4kh-hW-i8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="124" y="29.23538230884558"/>
+        </scene>
+    </scenes>
+</document>
