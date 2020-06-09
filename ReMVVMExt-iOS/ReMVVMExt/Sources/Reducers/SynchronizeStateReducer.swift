@@ -17,7 +17,7 @@ struct SynchronizeStateReducer: Reducer {
 
     public typealias Action = SynchronizeState
 
-    public static func reduce(state: NavigationTree, with action: SynchronizeState) -> NavigationTree {
+    public static func reduce(state: NavigationRoot, with action: SynchronizeState) -> NavigationRoot {
         if action.type == .navigation {
             return PopReducer.reduce(state: state, with: Pop())
         } else {

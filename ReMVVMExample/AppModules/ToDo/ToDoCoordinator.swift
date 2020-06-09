@@ -14,6 +14,7 @@ class ToDoCoordinator {
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
             ShowToDoListActionHandler(),
+            ShowToDoList1ActionHandler(),
             ShowToDoItemActionHandler()
         ]
     }

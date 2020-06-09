@@ -12,22 +12,28 @@ public struct PushReducer: Reducer {
 
     public typealias Action = Push
 
-    public static func reduce(state: NavigationTree, with action: Push) -> NavigationTree {
+    public static func reduce(state: NavigationRoot, with action: Push) -> NavigationRoot {
 
-        var stack = state.stack
+        let tree: NavigationTree
         // dismiss all modals without navigation
-        var modals: [NavigationTree.Modal] = state.modals.reversed().drop { !$0.hasNavigation }.reversed()
+        var modals: [NavigationRoot.Modal] = state.modals.reversed().drop { !$0.hasNavigation }.reversed()
 
         if let modal = modals.last, case .navigation(let stack) = modal {
             let newStack = updateStack(stack, for: action.pop)
             modals = modals.dropLast() + [.navigation(newStack + [action.controllerInfo.factory])]
+            tree = state.tree
         } else {
-            let newStack = updateStack(stack, for: action.pop)
-            stack = newStack + [action.controllerInfo.factory]
+            let current = state.tree.current
+            var stacks = state.tree.stacks
+            if let index = stacks.firstIndex(where: { $0.0 == current }) {
+                let stack = updateStack(stacks[index].1, for: action.pop) + [action.controllerInfo.factory]
+                stacks[index] = (current, stack)
+            }
+
+            tree = NavigationTree(current: state.tree.current, stacks: stacks)
         }
 
-        return NavigationTree(//root: state.root,
-                         stack: stack, modals: modals)
+        return NavigationRoot(tree: tree, modals: modals)
     }
 
     private static func updateStack(_ stack: [ViewModelFactory], for pop: PopMode?) -> [ViewModelFactory] {

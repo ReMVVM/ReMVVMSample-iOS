@@ -10,57 +10,85 @@ import Foundation
 import ReMVVM
 import RxSwift
 
-public final class TabBarViewModel: Initializable, StateObserver, ReMVVMDriven {
-    public typealias State = NavigationTabState
 
-    public let tabBarItemsViewModels: Observable<[TabBarItemViewModel]>
+public final class TabBarViewModel: Initializable, StateObserver, ReMVVMDriven {
+    public typealias State = NavigationTreeContainingState
+
+    public let items: Observable<[AnyNavigationTab]>
+    public let selected: Observable<AnyNavigationTab>
 
     public init() {
-        tabBarItemsViewModels = TabBarViewModel.remvvm.stateSubject.rx.state
-            .map { $0.currentTab }
-            .distinctUntilChanged()
-            .withLatestFrom(TabBarViewModel.remvvm.stateSubject.rx.state, resultSelector: { current, state -> [TabBarItemViewModel] in
-                return type(of: state).allTabs.map {
-                    TabBarItemViewModel(tab: $0, isSelected: $0 == current)
-                }
-            })
+
+        let state = TabBarViewModel.remvvm.stateSubject.rx.state
+
+        items = state.map { $0.navigationTree.tree.stacks.map { $0.0 }}
+                    .distinctUntilChanged()
+
+        selected = state.map { $0.navigationTree.tree.current }
+                    .distinctUntilChanged()
     }
 }
 
-public protocol NavigationTabState: StoreState {
-    var currentTab: AnyNavigationTab? { get }
-    static var allTabs: [AnyNavigationTab] { get }
-}
+public typealias CaseIterableNavigationTab = NavigationTab & CaseIterable
 
-public struct AnyNavigationTab: NavigationTab {
-
-    public let title: String
-    public let iconImage: Data
-    public let iconImageActive: Data
-    public let action: StoreAction
-}
-
-public protocol NavigationTab: Equatable {
+public protocol NavigationTab: /*Equatable,*/ Hashable {
     var title: String { get }
     var iconImage: Data { get }
     var iconImageActive: Data { get }
     var action: StoreAction { get }
 }
 
-extension NavigationTab {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.title == rhs.title
+
+public struct AnyNavigationTab: NavigationTab {
+
+    //public static var allCases: [AnyNavigationTab] { [] }
+
+    public let title: String
+    public let iconImage: Data
+    public let iconImageActive: Data
+    public let action: StoreAction
+
+    let base: Any
+
+    public init<T: NavigationTab>(_ tab: T) {
+        title = tab.title
+        iconImage = tab.iconImage
+        iconImageActive = tab.iconImageActive
+        action = tab.action
+
+        base = tab
+
+        isEqual = { t in
+            guard let t = t.base as? T else { return false }
+            return tab == t
+        }
+
+        _hash = { hasher in
+            tab.hash(into: &hasher)
+        }
     }
 
+    public func hash(into hasher: inout Hasher) {
+        _hash(&hasher)
+    }
+
+    private var isEqual: (AnyNavigationTab) -> Bool
+    private var _hash: (inout Hasher) -> Void
+
+    public static func == (lhs: AnyNavigationTab, rhs: AnyNavigationTab) -> Bool {
+        lhs.isEqual(rhs)
+    }
+
+}
+
+extension NavigationTab {
+
     public var any: AnyNavigationTab {
-        return AnyNavigationTab(title: title,
-                                iconImage: iconImage,
-                                iconImageActive: iconImageActive,
-                                action: action)
+        return AnyNavigationTab(self)
     }
 }
 
-extension Array where Element: NavigationTab {
+extension Collection where Element: NavigationTab {
     public var any: [AnyNavigationTab] {
         return map { $0.any }
     }

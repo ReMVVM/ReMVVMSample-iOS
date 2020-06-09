@@ -22,3 +22,14 @@ struct ShowToDoListActionHandler: ConvertActionMiddleware {
     }
 
 }
+
+struct ShowToDoList1Action: StoreAction { }
+
+struct ShowToDoList1ActionHandler: ConvertActionMiddleware {
+
+    func convert(action: ShowToDoList1Action, state: EXApplicationState) -> ShowOnTab {
+        let factory = CompositeViewModelFactory()
+        return ShowOnTab(tab: EXNavigationTab.todo1, loader: ToDoList.initialViewController, factory: factory)
+    }
+
+}

@@ -10,17 +10,12 @@ import ReMVVM
 
 struct ShowOnRootReducer: Reducer {
 
-    public static func reduce(state: NavigationTree, with action: ShowOnRoot) -> NavigationTree {
+    public static func reduce(state: NavigationRoot, with action: ShowOnRoot) -> NavigationRoot {
 
-        return NavigationTree(stack: [action.controllerInfo.factory], modals: [])
-    }
-}
-
-struct ShowOnTabReducer: Reducer {
-
-    public static func reduce(state: NavigationTree, with action: ShowOnTab) -> NavigationTree {
-
-        return NavigationTree(stack: [action.controllerInfo.factory], modals: [])
+        let current = NavigationTree.Root.flat
+        let stacks = [(current, [action.controllerInfo.factory])]
+        let tree = NavigationTree(current: current, stacks: stacks)
+        return NavigationRoot(tree: tree, modals: [])
     }
 }
 

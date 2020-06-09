@@ -12,10 +12,7 @@ public struct DismissModalReducer: Reducer {
 
     public typealias Action = DismissModal
 
-    public static func reduce(state: NavigationTree, with action: DismissModal) -> NavigationTree {
-
-        //let root = state.root
-        let stack = state.stack
+    public static func reduce(state: NavigationRoot, with action: DismissModal) -> NavigationRoot {
 
         var modals = state.modals
         if action.dismissAllViews {
@@ -23,7 +20,7 @@ public struct DismissModalReducer: Reducer {
         } else {
             modals.removeLast()
         }
-        return NavigationTree(stack: stack, modals: modals)
+        return NavigationRoot(tree: state.tree, modals: modals)
     }
 
 }

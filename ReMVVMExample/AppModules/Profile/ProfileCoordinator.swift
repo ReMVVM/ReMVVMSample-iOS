@@ -15,7 +15,8 @@ class ProfileCoordinator {
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
             ShowLoginActionHandler(),
-            ShowProfileActionHandler()
+            ShowProfileActionHandler(),
+            ShowProfile1ActionHandler()
         ]
     }
 

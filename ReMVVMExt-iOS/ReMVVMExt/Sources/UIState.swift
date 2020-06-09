@@ -12,20 +12,24 @@ import Loaders
 public struct UIStateConfig {
     let initial: () -> UIViewController
     let navigation: () -> UINavigationController
-    let tabBar: () -> UIViewController
+    let tabBarConfigs: [TabBarConfig]
     let navigationBarHidden: Bool
 
     public init(initial: @escaping () -> UIViewController,
                 customNavigation: (() -> UINavigationController)? = nil,
-                customTabBar: (() -> UIViewController)? = nil,
+                tabBarConfigs: [TabBarConfig] = [],
                 navigationBarHidden: Bool = true
         ) {
 
         self.initial = initial
         self.navigation = customNavigation ?? { UINavigationController() }
-        self.tabBar = customTabBar ?? { TabBarStoryboards.TabBar.instantiateInitialViewController() }
+        self.tabBarConfigs = tabBarConfigs
         self.navigationBarHidden = navigationBarHidden
     }
+}
+
+public protocol NavigationContainer {
+    var topNavigation: UINavigationController? { get }
 }
 
 public final class UIState {
@@ -62,7 +66,7 @@ public final class UIState {
     }
 
     public var navigationController: UINavigationController? {
-        return modalControllers.compactMap { $0 as? UINavigationController }.last ?? rootViewController.findNavigationController() ?? uiStateMainController
+        return modalControllers.compactMap { $0 as? UINavigationController }.last ?? (rootViewController as? NavigationContainer)?.topNavigation ?? uiStateMainController
     }
 
     private var topPresenter: UIViewController {
@@ -87,21 +91,5 @@ public final class UIState {
         topPresenter.dismiss(animated: animated, completion: { [topPresenter] in
             topPresenter.setNeedsStatusBarAppearanceUpdate()
         })
-    }
-}
-
-extension UIViewController {
-    func findNavigationController(for controller: UIViewController? = nil) -> UINavigationController? {
-        let controller = controller ?? self
-        if let navigation = controller as? UINavigationController {
-            return navigation
-        }
-
-        for controller in controller.children {
-            if let navigation = findNavigationController(for: controller) {
-                return navigation
-            }
-        }
-        return nil
     }
 }

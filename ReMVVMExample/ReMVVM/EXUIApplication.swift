@@ -14,9 +14,31 @@ struct EXUIApplication {
 
     public static func initialize(with window: UIWindow,
                                   middlewares: [AnyMiddleware],
-                                  state: EXApplicationState = .empty) -> Store<EXApplicationState> {
+                                  state: ApplicationState = .empty) -> Store<EXApplicationState> {
 
         EXUIApplication.setupStyles()
+
+
+
+
+        let tabConfig = TabBarConfig(height: 100,
+                                     configureTabBar: { tabBar in
+                                        tabBar.barTintColor = .red
+                                     },
+                                     configureItems: .custom { tabs in
+                                        let stack = UIStackView()
+                                        stack.distribution = .fillEqually
+
+                                        let controls: [UIControl] = tabs.map {
+                                            let item = TabBarItemView(frame: .zero)
+                                            item.viewModel = $0.any
+                                            return item
+                                        }
+                                        controls.forEach(stack.addArrangedSubview)
+
+                                        return (stack, controls)
+                                     },
+                                     tabType: EXNavigationTab.self)
 
         let uiStateConfig = UIStateConfig(initial: {
 
@@ -27,18 +49,19 @@ struct EXUIApplication {
 
             return mainViewController
 
-        }, customNavigation: EXNavigationController.init, customTabBar: nil, navigationBarHidden: true)
+        }, customNavigation: EXNavigationController.init, tabBarConfigs: [tabConfig], navigationBarHidden: true)
 
         let reducer = AnyReducer { state, action -> EXApplicationState in
             return EXApplicationState(
-                navigationTree: NavigationTreeReducer.reduce(state: state.navigationTree, with: action),
-                currentTab: NavigationTabReducer.reduce(state: state.currentTab, with: action),
-                userState: UserStateReducers.reduce(state: state.userState, with: action))
+                appState: ApplicationState(userState: UserStateReducers.reduce(state: state.appState.userState, with: action)),
+                navigationTree: NavigationTreeReducer.reduce(state: state.navigationTree, with: action)//,
+                //currentTab: NavigationTabReducer<EXNavigationTab>.reduce(state: state.currentTab, with: action)
+            )
         }
 
         let stateMappers: [StateMapper<EXApplicationState>] = [
             StateMapper<EXApplicationState> { state in
-                return state.userState
+                return state.appState.userState
             }
         ]
 
@@ -48,7 +71,7 @@ struct EXUIApplication {
 
         let store = ReMVVMExtension.initialize(with: window,
                                                uiStateConfig: uiStateConfig,
-                                               state: state,
+                                               state: EXApplicationState(appState: state),
                                                stateMappers: stateMappers,
                                                reducer: reducer,
                                                middleware: middlewares)

@@ -44,12 +44,13 @@ public struct ShowOnRoot: StoreAction {
 public struct ShowOnTab: StoreAction {
     public let controllerInfo: LoaderWithFactory
     public let navigationBarHidden: Bool
-    public let tabItemCreator: (() -> UIView)?
+    //public let tabItemCreator: (() -> UIView)?
     public let tab: AnyNavigationTab
+    public let all: [AnyNavigationTab]
 
-    public init<Tab: NavigationTab>(tab: Tab,
+    public init<Tab: CaseIterableNavigationTab>(tab: Tab,
                                     loader: Loader<UIViewController>,
-                                    tabItemCreator: (() -> UIView)? = nil,
+                                    //tabItemCreator: (() -> UIView)? = nil,
                                     factory: ViewModelFactory,
                                     animated: Bool = true,
                                     navigationBarHidden: Bool = true) {
@@ -58,8 +59,9 @@ public struct ShowOnTab: StoreAction {
                                                 factory: factory,
                                                 animated: animated)
         self.navigationBarHidden = navigationBarHidden
-        self.tab = tab.any
-        self.tabItemCreator = tabItemCreator
+        self.tab = AnyNavigationTab(tab)
+        //self.tabItemCreator = tabItemCreator
+        self.all = type(of: tab).allCases.map { AnyNavigationTab($0) }
     }
 }
 

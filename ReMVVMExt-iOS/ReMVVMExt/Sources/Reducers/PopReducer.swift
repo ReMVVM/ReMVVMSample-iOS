@@ -12,11 +12,11 @@ public struct PopReducer: Reducer {
 
     public typealias Action = Pop
 
-    public static func reduce(state: NavigationTree, with action: Pop) -> NavigationTree {
+    public static func reduce(state: NavigationRoot, with action: Pop) -> NavigationRoot {
         return updateStateTree(state, for: action.mode)
     }
 
-    private static func updateStateTree(_ stateTree: NavigationTree, for mode: PopMode) -> NavigationTree {
+    private static func updateStateTree(_ stateTree: NavigationRoot, for mode: PopMode) -> NavigationRoot {
         switch mode {
         case .popToRoot:
             return popStateTree(stateTree, dropCount: stateTree.topStack.count - 1)
@@ -25,15 +25,27 @@ public struct PopReducer: Reducer {
         }
     }
 
-    private static func popStateTree(_ stateTree: NavigationTree, dropCount: Int) -> NavigationTree {
-        guard dropCount > 0, stateTree.topStack.count > dropCount else { return stateTree }
-        let newStack = Array(stateTree.topStack.dropLast(dropCount))
+    private static func popStateTree(_ root: NavigationRoot, dropCount: Int) -> NavigationRoot {
+        //TODO ??? czy na pewno top stack ? nie powinien pop robic dissmiss modala ?
+        guard dropCount > 0, root.topStack.count > dropCount else { return root }
+        let tree: NavigationTree
+        let modals: [NavigationRoot.Modal]
+        let newTopStack = Array(root.topStack.dropLast(dropCount))
+        if root.modals.isEmpty { //no modal
+            let current = root.tree.current
+            var stacks = root.tree.stacks
+            if let index = stacks.firstIndex(where: { $0.0 == current }) {
+                stacks[index] = (current, newTopStack)
+            }
 
-        let hasModal = !stateTree.modals.isEmpty
-        let stack = hasModal ? stateTree.stack : newStack
-        let modals = hasModal ? Array(stateTree.modals.dropLast()) + [.navigation(newStack)] : stateTree.modals
-        return NavigationTree(//root: stateTree.root,
-                         stack: stack, modals: modals)
+            tree = NavigationTree(current: current, stacks: stacks)
+            modals = root.modals
+        } else { // modal
+            tree = root.tree
+            modals = Array(root.modals.dropLast()) + [.navigation(newTopStack)]
+        }
+
+        return NavigationRoot(tree: tree, modals: modals)
     }
 
 }

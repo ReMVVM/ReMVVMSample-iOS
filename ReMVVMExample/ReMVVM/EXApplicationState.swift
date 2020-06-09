@@ -9,34 +9,16 @@
 import ReMVVM
 import ReMVVMExt
 
-struct EXApplicationState: NavigationTreeContainingState, NavigationTabState {
+typealias EXApplicationState = ReMVVMiOSState<ApplicationState>
 
-    static let empty = EXApplicationState()
+struct ApplicationState {
 
-    static var allTabs: [AnyNavigationTab] = [
-        EXNavigationTab.stack.any,
-        EXNavigationTab.todo.any,
-        EXNavigationTab.profile.any
-    ]
+    static let empty = ApplicationState()
 
-    var factory: ViewModelFactory {
-        if navigationTree.factory is CompositeViewModelFactory {
-            return navigationTree.factory
-        } else {
-            return CompositeViewModelFactory(with: navigationTree.factory)
-        }
-    }
-    
-    let navigationTree: NavigationTree
-    let currentTab: AnyNavigationTab?
     let userState: UserState
 
-    init(navigationTree: NavigationTree = NavigationTree(stack: [], modals: []),
-         currentTab: AnyNavigationTab? = nil,
-         userState: UserState = .empty) {
+    init(userState: UserState = .empty) {
 
-        self.navigationTree = navigationTree
-        self.currentTab = currentTab
         self.userState = userState
     }
 }

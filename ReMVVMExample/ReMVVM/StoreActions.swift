@@ -7,6 +7,10 @@
 //
 
 import ReMVVM
+import ReMVVMExt
+
+//typealias ShowOnTab = ReMVVMExt.ShowOnTab<EXNavigationTab>
+
 
 struct EXStoreActions {
     struct User { }

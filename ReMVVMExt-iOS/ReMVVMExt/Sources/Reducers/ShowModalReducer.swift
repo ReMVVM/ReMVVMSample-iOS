@@ -13,18 +13,14 @@ public struct ShowModalReducer: Reducer {
 
     public typealias Action = ShowModal
 
-    public static func reduce(state: NavigationTree, with action: ShowModal) -> NavigationTree {
-
-        let stack = state.stack
-        //let root = state.root
+    public static func reduce(state: NavigationRoot, with action: ShowModal) -> NavigationRoot {
 
         let factory = action.controllerInfo.factory
-        let modal: NavigationTree.Modal = action.withNavigationController ? .navigation([factory]) : .single(factory)
+        let modal: NavigationRoot.Modal = action.withNavigationController ? .navigation([factory]) : .single(factory)
         // dismiss all modals without navigation
         let modals = state.modals.reversed().drop { !$0.hasNavigation }.reversed() + [modal]
 
-        return NavigationTree(//root: root,
-                         stack: stack, modals: modals)
+        return NavigationRoot(tree: state.tree, modals: modals)
     }
 }
 

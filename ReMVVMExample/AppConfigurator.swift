@@ -21,7 +21,7 @@ struct AppConfigurator {
             + ToDoCoordinator.createMiddlewares()
     }
 
-    @discardableResult static func setupAplication(with state: EXApplicationState = .empty) -> Store<EXApplicationState> {
+    @discardableResult static func setupAplication(with state: ApplicationState = .empty) -> Store<EXApplicationState> {
 
         let window = UIWindow(frame: UIScreen.main.bounds)
 
