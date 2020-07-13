@@ -10,20 +10,7 @@ import Foundation
 import ReMVVM
 import ReMVVMExt
 
-public enum EXNavigationTab: String, CaseIterableNavigationTab {
-    public var action: StoreAction {
-        switch self {
-        case .profile: return ShowProfileAction()
-        case .stack: return ShowTestStackAction.showOnTab
-        case .todo: return ShowToDoListAction()
-
-        case .profile1: return ShowProfileAction1()
-        case .stack1: return ShowTestStackAction.showOnTab//ShowOnTab(tab: EXNavigationTab.stack1,
-            //loader: TestStack.initialViewController,
-            //factory: CompositeViewModelFactory())
-        case .todo1: return ShowToDoList1Action()
-        }
-    }
+public enum EXNavigationTab: String, CaseIterable, NavigationTab {
 
     case todo = "TO-DO"
     case profile = "Profile"
@@ -33,36 +20,15 @@ public enum EXNavigationTab: String, CaseIterableNavigationTab {
     case stack1 = "Stack1"
     case todo1 = "TO-DO1"
 
-    public var title: String {
-        return self.rawValue
-    }
-
-    public var iconImageName: String {
+    public var action: StoreAction {
         switch self {
-        case .todo:
-            return "list"
-        case .stack:
-            return "transfer"
-        case .profile:
-            return "user"
-            case .todo1:
-                return "list"
-            case .stack1:
-                return "transfer"
-            case .profile1:
-                return "user"
+        case .profile: return ShowProfileAction()
+        case .stack: return ShowTestStackAction.showOnTab
+        case .todo: return ShowToDoListAction()
+
+        case .profile1: return ShowProfileAction1()
+        case .stack1: return ShowTestStackAction.showOnTab
+        case .todo1: return ShowToDoList1Action()
         }
-    }
-
-    public var iconImageNameActive: String {
-        return iconImageName
-    }
-
-    public var iconImage: Data {
-        return UIImage(named: iconImageName)?.pngData() ?? Data()
-    }
-
-    public var iconImageActive: Data {
-        return UIImage(named: iconImageNameActive)?.pngData() ?? Data()
     }
 }

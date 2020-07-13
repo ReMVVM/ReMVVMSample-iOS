@@ -31,29 +31,18 @@ public final class TabBarViewModel: Initializable, StateObserver, ReMVVMDriven {
 
 public typealias CaseIterableNavigationTab = NavigationTab & CaseIterable
 
-public protocol NavigationTab: /*Equatable,*/ Hashable {
-    var title: String { get }
-    var iconImage: Data { get }
-    var iconImageActive: Data { get }
+public protocol NavigationTab: Hashable {
     var action: StoreAction { get }
 }
 
-
 public struct AnyNavigationTab: NavigationTab {
 
-    //public static var allCases: [AnyNavigationTab] { [] }
-
-    public let title: String
-    public let iconImage: Data
-    public let iconImageActive: Data
     public let action: StoreAction
 
     let base: Any
 
     public init<T: NavigationTab>(_ tab: T) {
-        title = tab.title
-        iconImage = tab.iconImage
-        iconImageActive = tab.iconImageActive
+
         action = tab.action
 
         base = tab

@@ -10,6 +10,82 @@ import ReMVVM
 import ReMVVMExt
 import UIKit
 
+extension EXNavigationTab {
+
+    var title: String {
+        return self.rawValue
+    }
+
+    var iconImageName: String {
+        switch self {
+        case .todo:
+            return "list"
+        case .stack:
+            return "transfer"
+        case .profile:
+            return "user"
+            case .todo1:
+                return "list"
+            case .stack1:
+                return "transfer"
+            case .profile1:
+                return "user"
+        }
+    }
+
+    var iconImageNameActive: String {
+        return iconImageName
+    }
+
+    var iconImage: UIImage? {
+        return resizeImage(image: UIImage(named: iconImageName), newWidth: 30)
+    }
+
+    var iconImageActive: UIImage? {
+        return resizeImage(image: UIImage(named: iconImageNameActive), newWidth: 30)
+    }
+
+    private func resizeImage(image: UIImage?, newWidth: CGFloat) -> UIImage? {
+
+        guard let image = image else {  return nil }
+
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage
+    }
+
+    static func configure(tabs: [EXNavigationTab]) -> (UIView, [UIControl]) {
+        let stack = UIStackView()
+         stack.distribution = .fillEqually
+
+         let controls: [UIControl] = tabs.map {
+             let item = TabBarItemView(frame: .zero)
+             item.title = $0.title
+             item.iconImage = $0.iconImage
+             item.iconImageActive = $0.iconImageActive
+             return item
+         }
+         controls.forEach(stack.addArrangedSubview)
+
+         return (stack, controls)
+    }
+
+    static func configure(tabs: [(tab: EXNavigationTab, uiTab: UITabBarItem)]) -> UIView? {
+
+        tabs.forEach {
+            $0.uiTab.title = $0.tab.title
+            $0.uiTab.image = $0.tab.iconImage
+            $0.uiTab.selectedImage = $0.tab.iconImageActive
+        }
+        return nil
+    }
+}
+
 struct EXUIApplication {
 
     public static func initialize(with window: UIWindow,
@@ -21,24 +97,16 @@ struct EXUIApplication {
 
 
 
-        let tabConfig = TabBarConfig(height: 100,
-                                     configureTabBar: { tabBar in
-                                        tabBar.barTintColor = .red
-                                     },
-                                     configureItems: .custom { tabs in
-                                        let stack = UIStackView()
-                                        stack.distribution = .fillEqually
-
-                                        let controls: [UIControl] = tabs.map {
-                                            let item = TabBarItemView(frame: .zero)
-                                            item.viewModel = $0.any
-                                            return item
-                                        }
-                                        controls.forEach(stack.addArrangedSubview)
-
-                                        return (stack, controls)
-                                     },
-                                     tabType: EXNavigationTab.self)
+        guard let tabConfig = try? TabBarConfig(height: 100,
+                                                configureTabBar: { tabBar in
+                                                    tabBar.barTintColor = .red
+                                                },
+                                                configureItems: .custom(EXNavigationTab.configure))
+        else { fatalError("Cannot initialize TabBarConfig") }
+        
+//        guard let tabConfig = try? TabBarConfig(configureItems: .uiTabBar(EXNavigationTab.configure)) else {
+//            fatalError("Cannot initialize TabBarConfig")
+//        }
 
         let uiStateConfig = UIStateConfig(initial: {
 

@@ -15,25 +15,19 @@ import UIKit
 
 open class TabBarItemView: UIControl, ReMVVMDriven {
 
-    var viewModel: AnyNavigationTab? {
-        didSet {
-            guard let viewModel = self.viewModel else { return }
-
-            titleLabel.text = viewModel.title
-            isSelected = { isSelected }()
-        }
-    }
+    var title: String? = nil { didSet { setup() } }
+    var iconImage: UIImage? = nil { didSet { setup() } }
+    var iconImageActive: UIImage? = nil { didSet { setup() } }
 
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var iconImageView: UIImageView!
 
-    open override var isSelected: Bool {
-        didSet {
-            guard let viewModel = self.viewModel else { return }
-            iconImageView.image = isSelected ? UIImage(data: viewModel.iconImageActive) : UIImage(data: viewModel.iconImage)
+    open override var isSelected: Bool { didSet { setup() } }
 
-            titleLabel.text = isSelected ? "S " : "" + viewModel.title
-        }
+    func setup() {
+        iconImageView.image = isSelected ? iconImageActive ?? iconImage : iconImage
+        let title = self.title ?? ""
+        titleLabel.text = isSelected ? "S " + title : title
     }
 
     override public init(frame: CGRect) {

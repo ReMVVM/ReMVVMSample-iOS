@@ -106,11 +106,6 @@ public struct NavigationTree {
 
     public enum Root: NavigationTab {
         //TODO
-        public var title: String { "" }
-
-        public var iconImage: Data { Data() }
-
-        public var iconImageActive: Data { Data() }
 
         public var action: StoreAction { FakeAction() }
 

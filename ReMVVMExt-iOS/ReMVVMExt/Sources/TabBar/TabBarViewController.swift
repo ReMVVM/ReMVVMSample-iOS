@@ -15,6 +15,10 @@ import UIKit
 
 public struct TabBarConfig {
 
+    enum ConfigError: Error {
+        case toManyElements
+    }
+
     let height: CGFloat?
     let configureItems: ItemsConfigurator<AnyNavigationTab>?
     let configureTabBar: ((UITabBar) -> Void)?
@@ -24,14 +28,17 @@ public struct TabBarConfig {
     public init<Tab>(height: CGFloat? = nil,
                      configureTabBar: ((UITabBar) -> Void)? = nil,
                      configureItems: ItemsConfigurator<Tab>? = nil,
-                     tabType: Tab.Type = Tab.self) where Tab: CaseIterableNavigationTab {
+                     tabType: Tab.Type = Tab.self) throws where Tab: CaseIterableNavigationTab {
         self.height = height
         self.configureTabBar = configureTabBar
         self.configureItems = configureItems?.any
         all = Tab.allCases.any
+
+        if case .custom = configureItems { return }
+        else if all.count > 5 {
+            throw ConfigError.toManyElements
+        }
     }
-
-
 
     public  enum ItemsConfigurator<Tab> {
         case uiTabBar(([(Tab, UITabBarItem)]) -> UIView?)
@@ -46,21 +53,6 @@ public struct TabBarConfig {
             }
         }
     }
-
-//    enum ItemsCreator<Tab> {
-//        case tabBarItem(([Tab]) -> [UITabBarItem])
-//        case controlItem(([Tab]) -> [UIControl])
-//
-//        var any: ItemsCreator<AnyNavigationTab> {
-//            switch self {
-//            case .tabBarItem(let creator):
-//                return .tabBarItem { creator($0.compactMap { $0.base as? Tab }) }
-//            case .controlItem(let creator):
-//                return .controlItem { creator($0.compactMap { $0.base as? Tab }) }
-//            }
-//        }
-//    }
-
 }
 
 private class TabBar: UITabBar {
@@ -204,34 +196,12 @@ open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVM
         return topNavigation?.topViewController
     }
 
-    private func findTableView(for view: UIView) -> UITableView? {
-        if let table = view as? UITableView {
-            return table
-        }
-
-        for v in view.subviews {
-            if let found = findTableView(for: v) {
-                return found
-            }
-        }
-
-        return nil
-    }
-
     private var customTabBar: TabBar { return tabBar as! TabBar}
     private let disposeBag = DisposeBag()
+    private var moreDelegate: UITableViewDelegate?
     open override func viewDidLoad() {
         setValue(TabBar(), forKey: "tabBar")
-
         super.viewDidLoad()
-        delegate = self
-
-        if let top = moreNavigationController.topViewController {
-            if let table = findTableView(for: top.view) {
-                print(table)
-                table.delegate = self
-            }
-        }
 
         guard let viewModel = viewModel else { return }
 
@@ -274,14 +244,7 @@ open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVM
             moreNavigationController.navigationBar.isHidden = true
 
         } else {
-            let tabBarItems: [TabBarItem] = items.map { item in
-
-                let tabItem = TabBarItem(navigationTab: item, controlItem: nil)
-                tabItem.title = item.title
-                tabItem.image = UIImage(data: item.iconImage)
-                tabItem.selectedImage = UIImage(data: item.iconImageActive)
-                return tabItem
-            }
+            let tabBarItems: [TabBarItem] = items.map { TabBarItem(navigationTab: $0, controlItem: nil) }
 
             tabItems = tabBarItems
 
@@ -297,27 +260,11 @@ open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVM
             moreNavigationController.navigationBar.isHidden = false
         }
 
-
-
         viewControllers = tabItems.map { tab in
             let controller = ContainerViewController()
             controller.tabBarItem = tab
             return controller
         }
-    }
-
-    private func resizeImage(image: UIImage?, newWidth: CGFloat) -> UIImage? {
-
-        guard let image = image else {  return nil }
-
-        let scale = newWidth / image.size.width
-        let newHeight = image.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage
     }
 
     private func setup(current: AnyNavigationTab) {
@@ -336,39 +283,4 @@ open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVM
         remvvm.dispatch(action: tab.navigationTab.action)
     }
 
-    open override var selectedIndex: Int {
-        didSet {
-            print(index)
-        }
-    }
-
-    open override var selectedViewController: UIViewController? {
-        didSet {
-            print(selectedViewController)
-        }
-    }
-}
-
-extension TabBarViewController: UITableViewDelegate {
-
-    public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-
-        sendAction(for: viewControllers![indexPath.item + 4])
-        return nil
-    }
-}
-
-extension TabBarViewController: UITabBarControllerDelegate {
-
-    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-
-        if viewController as? ContainerViewController == nil {
-            return true
-        } else {
-            DispatchQueue.main.async {
-                self.sendAction(for: viewController)
-            }
-            return false
-        }
-    }
 }
