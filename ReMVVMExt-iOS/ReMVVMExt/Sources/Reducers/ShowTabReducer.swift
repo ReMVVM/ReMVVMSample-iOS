@@ -63,15 +63,19 @@ public struct ShowOnTabMiddleware: AnyMiddleware {
 
         interceptor.next(action: action) { [uiState] state in
 
-            let wasTabOnTop = uiState.rootViewController is TabBarViewController
+            let wasTabOnTop = uiState.rootViewController is TabBarViewController//?.items == tabAction.all
             let tabViewController = uiState.rootViewController as? TabBarViewController ?? {
                 let tabController = TabBarViewController(uiStateConfig: uiState.config)
                 tabController.loadViewIfNeeded()
+
+//                tabController.items = tabAction.all
                 return tabController
             }()
 
+//            tabViewController.set(current: tabAction.tab)
+
             //set up current if empty (or reset)
-            if let top = tabViewController.topNavigation, top.viewControllers.isEmpty {
+            if let top = tabViewController.currentNavigationController, top.viewControllers.isEmpty {
                 top.setViewControllers([tabAction.controllerInfo.loader.load()],
                 animated: false)
             }

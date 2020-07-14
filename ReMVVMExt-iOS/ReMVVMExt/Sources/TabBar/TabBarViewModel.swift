@@ -11,21 +11,36 @@ import ReMVVM
 import RxSwift
 
 
-public final class TabBarViewModel: Initializable, StateObserver, ReMVVMDriven {
+open class TabBarViewModel<Tab: NavigationTab>: Initializable, StateObserver, ReMVVMDriven {
     public typealias State = NavigationTreeContainingState
 
-    public let items: Observable<[AnyNavigationTab]>
-    public let selected: Observable<AnyNavigationTab>
+    public let items: Observable<[Tab]>
+    public let selected: Observable<Tab>
 
-    public init() {
+    required public init() {
 
         let state = TabBarViewModel.remvvm.stateSubject.rx.state
+        if Tab.self == AnyNavigationTab.self {
+            let tabType = state.map { type(of: $0.navigationTree.tree.current.base) }.take(1).share()
+            items = state.map { $0.navigationTree.tree.stacks.map { $0.0 }}
+                        .withLatestFrom(tabType) { items, tabType -> [Tab] in
+                            items
+                                .filter { type(of: $0.base) == tabType }
+                                .compactMap { $0 as? Tab }
+                        }
+                        .filter { $0.count != 0}
+                        .distinctUntilChanged()
 
-        items = state.map { $0.navigationTree.tree.stacks.map { $0.0 }}
-                    .distinctUntilChanged()
+            selected = state.compactMap { $0.navigationTree.tree.current as? Tab }
+                            .distinctUntilChanged()
+        } else {
+            items = state.map { $0.navigationTree.tree.stacks.compactMap { $0.0.base as? Tab }}
+                        .filter { $0.count != 0}
+                        .distinctUntilChanged()
 
-        selected = state.map { $0.navigationTree.tree.current }
-                    .distinctUntilChanged()
+            selected = state.compactMap { $0.navigationTree.tree.current.base as? Tab }
+                        .distinctUntilChanged()
+        }
     }
 }
 

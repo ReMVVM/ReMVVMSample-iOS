@@ -28,9 +28,39 @@ public struct UIStateConfig {
     }
 }
 
-public protocol NavigationContainer {
-    var topNavigation: UINavigationController? { get }
+public protocol NavigationContainerController: AnyNavigationContainerController {
+    associatedtype Tab: CaseIterableNavigationTab
+
+    func set(current: Tab)
 }
+
+extension NavigationContainerController {
+    public var items: [AnyNavigationTab] {
+        get { Tab.allCases.any }
+        set { }
+    }
+
+    public func set(current: AnyNavigationTab) {
+        guard let current = current.base as? Tab else { return }
+        set(current: current)
+    }
+}
+
+public protocol AnyNavigationContainerController {
+    var currentNavigationController: UINavigationController? { get }
+
+//    var items: [AnyNavigationTab] { get set }
+//    func set(current: AnyNavigationTab)
+//
+//    func dispatchAction(for tab: AnyNavigationTab)
+}
+
+//extension AnyNavigationContainerController {
+//    public func dispatchAction(for tab: AnyNavigationTab) {
+//        
+//    }
+//}
+
 
 public final class UIState {
 
@@ -66,7 +96,7 @@ public final class UIState {
     }
 
     public var navigationController: UINavigationController? {
-        return modalControllers.compactMap { $0 as? UINavigationController }.last ?? (rootViewController as? NavigationContainer)?.topNavigation ?? uiStateMainController
+        return modalControllers.compactMap { $0 as? UINavigationController }.last ?? (rootViewController as? AnyNavigationContainerController)?.currentNavigationController ?? uiStateMainController
     }
 
     private var topPresenter: UIViewController {

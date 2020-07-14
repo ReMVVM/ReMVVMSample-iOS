@@ -146,12 +146,12 @@ class TabBarItem: UITabBarItem {
     }
 }
 
-class ContainerViewController: UIViewController, NavigationContainer {
-    let topNavigation: UINavigationController?
+class ContainerViewController: UIViewController {
+    let currentNavigationController: UINavigationController?
 
     init() {
         let topNavigation = UINavigationController()
-        self.topNavigation = topNavigation
+        self.currentNavigationController = topNavigation
         super.init(nibName: nil, bundle: nil)
 
         topNavigation.willMove(toParent: self)
@@ -166,8 +166,7 @@ class ContainerViewController: UIViewController, NavigationContainer {
 }
 
 
-open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVMDriven {
-
+class TabBarViewController: UITabBarController, AnyNavigationContainerController, ReMVVMDriven {
     init(uiStateConfig: UIStateConfig?) {
         self.uiStateConfig = uiStateConfig
 
@@ -182,27 +181,28 @@ open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVM
         viewControllers?.compactMap { $0 as? ContainerViewController }
     }
 
-    public var topNavigation: UINavigationController? {
+    public var currentNavigationController: UINavigationController? {
         guard selectedIndex >= 0 && selectedIndex < containers?.count ?? 0 else { return nil }
-        return containers?[selectedIndex].topNavigation
+        return containers?[selectedIndex].currentNavigationController
     }
 
     private var uiStateConfig: UIStateConfig?
     private var config: TabBarConfig?
 
-    @Provided private var viewModel: TabBarViewModel?
+    @Provided private var viewModel: TabBarViewModel<AnyNavigationTab>?
 
     override open var childForStatusBarStyle: UIViewController? {
-        return topNavigation?.topViewController
+        return currentNavigationController?.topViewController
     }
 
     private var customTabBar: TabBar { return tabBar as! TabBar}
-    private let disposeBag = DisposeBag()
-    private var moreDelegate: UITableViewDelegate?
+
+//    private var moreDelegate: UITableViewDelegate?
     open override func viewDidLoad() {
         setValue(TabBar(), forKey: "tabBar")
         super.viewDidLoad()
 
+        delegate = self
         guard let viewModel = viewModel else { return }
 
         viewModel.items.subscribe(onNext: { [unowned self] items in
@@ -214,6 +214,13 @@ open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVM
         }).disposed(by: disposeBag)
     }
 
+    private let disposeBag = DisposeBag()
+//    var items: [AnyNavigationTab] = [] {
+//        didSet {
+//            guard items != oldValue else { return }
+//            setup(items: items)
+//        }
+//    }
     private func setup(items: [AnyNavigationTab]) {
 
         config = uiStateConfig?.tabBarConfigs.first { $0.all == items }
@@ -266,8 +273,9 @@ open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVM
             return controller
         }
     }
-
+    
     private func setup(current: AnyNavigationTab) {
+
         let selected = viewControllers?.first {
             guard let tab = $0.tabBarItem as? TabBarItem else { return false }
             return current == tab.navigationTab
@@ -284,3 +292,14 @@ open class TabBarViewController: UITabBarController, NavigationContainer, ReMVVM
     }
 
 }
+
+extension TabBarViewController: UITabBarControllerDelegate {
+
+    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        DispatchQueue.main.async {
+            self.sendAction(for: viewController)
+        }
+        return false
+    }
+}
+
