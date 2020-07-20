@@ -10,57 +10,28 @@ import UIKit
 import Loaders
 
 public struct UIStateConfig {
-    let initial: () -> UIViewController
-    let navigation: () -> UINavigationController
-    let tabBarConfigs: [TabBarConfig]
+    let initialController: () -> UIViewController
+    let navigationController: () -> UINavigationController
+    let navigationConfigs: [NavigationConfig]
     let navigationBarHidden: Bool
 
-    public init(initial: @escaping () -> UIViewController,
-                customNavigation: (() -> UINavigationController)? = nil,
-                tabBarConfigs: [TabBarConfig] = [],
+    public init(initialController: @escaping @autoclosure () -> UIViewController,
+                navigationController: (() -> UINavigationController)? = nil,
+                navigationConfigs: [NavigationConfig] = [],
                 navigationBarHidden: Bool = true
         ) {
 
-        self.initial = initial
-        self.navigation = customNavigation ?? { UINavigationController() }
-        self.tabBarConfigs = tabBarConfigs
+        self.initialController = initialController
+        self.navigationController = navigationController ?? { UINavigationController() }
+        self.navigationConfigs = navigationConfigs
         self.navigationBarHidden = navigationBarHidden
     }
 }
 
-public protocol NavigationContainerController: AnyNavigationContainerController {
-    associatedtype Tab: CaseIterableNavigationTab
 
-    func set(current: Tab)
-}
-
-extension NavigationContainerController {
-    public var items: [AnyNavigationTab] {
-        get { Tab.allCases.any }
-        set { }
-    }
-
-    public func set(current: AnyNavigationTab) {
-        guard let current = current.base as? Tab else { return }
-        set(current: current)
-    }
-}
-
-public protocol AnyNavigationContainerController {
+public protocol NavigationContainerController where Self: UIViewController {
     var currentNavigationController: UINavigationController? { get }
-
-//    var items: [AnyNavigationTab] { get set }
-//    func set(current: AnyNavigationTab)
-//
-//    func dispatchAction(for tab: AnyNavigationTab)
 }
-
-//extension AnyNavigationContainerController {
-//    public func dispatchAction(for tab: AnyNavigationTab) {
-//        
-//    }
-//}
-
 
 public final class UIState {
 
@@ -75,13 +46,13 @@ public final class UIState {
         self.window = window
         self.config = config
 
-        uiStateMainController = config.navigation()
+        uiStateMainController = config.navigationController()
         uiStateMainController.view.bounds = window.bounds
         uiStateMainController.setNavigationBarHidden(config.navigationBarHidden, animated: false)
 
         window.rootViewController = uiStateMainController
 
-        setRoot(controller: config.initial(), animated: false, navigationBarHidden: config.navigationBarHidden)
+        setRoot(controller: config.initialController(), animated: false, navigationBarHidden: config.navigationBarHidden)
     }
 
     public func setRoot(controller: UIViewController, animated: Bool, navigationBarHidden: Bool) {
@@ -96,7 +67,7 @@ public final class UIState {
     }
 
     public var navigationController: UINavigationController? {
-        return modalControllers.compactMap { $0 as? UINavigationController }.last ?? (rootViewController as? AnyNavigationContainerController)?.currentNavigationController ?? uiStateMainController
+        return modalControllers.compactMap { $0 as? UINavigationController }.last ?? (rootViewController as? NavigationContainerController)?.currentNavigationController ?? uiStateMainController
     }
 
     private var topPresenter: UIViewController {

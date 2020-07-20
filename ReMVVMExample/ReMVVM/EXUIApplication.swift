@@ -9,6 +9,7 @@
 import ReMVVM
 import ReMVVMExt
 import UIKit
+import Loaders
 
 extension EXNavigationTab {
 
@@ -26,8 +27,8 @@ extension EXNavigationTab {
             return "user"
             case .todo1:
                 return "list"
-            case .stack1:
-                return "transfer"
+//            case .stack1:
+//                return "transfer"
             case .profile1:
                 return "user"
         }
@@ -59,32 +60,40 @@ extension EXNavigationTab {
         return newImage
     }
 
-    static func configure(tabs: [EXNavigationTab]) -> (UIView, [UIControl]) {
-        let stack = UIStackView()
-         stack.distribution = .fillEqually
-
-         let controls: [UIControl] = tabs.map {
-             let item = TabBarItemView(frame: .zero)
-             item.title = $0.title
-             item.iconImage = $0.iconImage
-             item.iconImageActive = $0.iconImageActive
-             return item
-         }
-         controls.forEach(stack.addArrangedSubview)
-
-         return (stack, controls)
+    static var uiTabBarConfig: UITabBarItemConfig<Self> = { tabBar, items in
+        items.forEach {
+            
+            $0.uiTabBarItem.title = $0.item.title
+            $0.uiTabBarItem.image = $0.item.iconImage
+            $0.uiTabBarItem.selectedImage = $0.item.iconImageActive
+        }
+        return HeightWithOverlay(height: 100)
     }
 
-    static func configure(tabs: [(tab: EXNavigationTab, uiTab: UITabBarItem)]) -> UIView? {
+    static var tabBarCustomConfig: CustomTabBarItemConfig<Self> = { tabBar, items in
+        //setup bar ?
+        tabBar.barTintColor = .red
 
-        tabs.forEach {
-            $0.uiTab.title = $0.tab.title
-            $0.uiTab.image = $0.tab.iconImage
-            $0.uiTab.selectedImage = $0.tab.iconImageActive
+        //setup items
+        let stack = UIStackView()
+        stack.distribution = .fillEqually
+
+        let controls: [UIControl] = items.map {
+            let item = TabBarItemView(frame: .zero)
+            item.title = $0.title
+            item.iconImage = $0.iconImage
+            item.iconImageActive = $0.iconImageActive
+            return item
         }
-        return nil
+        controls.forEach(stack.addArrangedSubview)
+
+        return CustomReturn(height: 100,
+                            overelay: stack,
+                            controls: controls)
     }
 }
+
+enum LaunchScreen: Storyboard, HasInitialController { }
 
 struct EXUIApplication {
 
@@ -95,35 +104,24 @@ struct EXUIApplication {
         EXUIApplication.setupStyles()
 
 
-
-
-        guard let tabConfig = try? TabBarConfig(height: 100,
-                                                configureTabBar: { tabBar in
-                                                    tabBar.barTintColor = .red
-                                                },
-                                                configureItems: .custom(EXNavigationTab.configure))
-        else { fatalError("Cannot initialize TabBarConfig") }
+//        guard let tabConfig = try? TabBarConfig(height: 100,
+//                                                configureTabBar: { tabBar in
+//                                                    tabBar.barTintColor = .red
+//                                                },
+//                                                configureItems: .custom(EXNavigationTab.configure))
+//        else { fatalError("Cannot initialize TabBarConfig") }
         
-//        guard let tabConfig = try? TabBarConfig(configureItems: .uiTabBar(EXNavigationTab.configure)) else {
-//            fatalError("Cannot initialize TabBarConfig")
-//        }
+        let tabConfig = NavigationConfig(EXNavigationTab.tabBarCustomConfig)
 
-        let uiStateConfig = UIStateConfig(initial: {
-
-            let storyboard = UIStoryboard(name: "LaunchScreen", bundle: Bundle.main)
-            guard let mainViewController = storyboard.instantiateInitialViewController() else {
-                fatalError("LaunchScreen not found")
-            }
-
-            return mainViewController
-
-        }, customNavigation: EXNavigationController.init, tabBarConfigs: [tabConfig], navigationBarHidden: true)
+        let uiStateConfig = UIStateConfig(initialController: LaunchScreen.instantiateInitialViewController(),
+                                          navigationController: EXNavigationController.init,
+                                          navigationConfigs: [tabConfig],
+                                          navigationBarHidden: true)
 
         let reducer = AnyReducer { state, action -> EXApplicationState in
             return EXApplicationState(
                 appState: ApplicationState(userState: UserStateReducers.reduce(state: state.appState.userState, with: action)),
-                navigationTree: NavigationTreeReducer.reduce(state: state.navigationTree, with: action)//,
-                //currentTab: NavigationTabReducer<EXNavigationTab>.reduce(state: state.currentTab, with: action)
+                navigation: NavigationReducer.reduce(state: state.navigation, with: action)
             )
         }
 
@@ -132,10 +130,6 @@ struct EXUIApplication {
                 return state.appState.userState
             }
         ]
-
-//        TabBarConfig.tabBarViewController = {
-//            return TabBar.instantiateInitialViewController()
-//        }
 
         let store = ReMVVMExtension.initialize(with: window,
                                                uiStateConfig: uiStateConfig,

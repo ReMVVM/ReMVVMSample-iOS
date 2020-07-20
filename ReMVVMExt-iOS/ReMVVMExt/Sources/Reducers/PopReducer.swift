@@ -12,11 +12,11 @@ public struct PopReducer: Reducer {
 
     public typealias Action = Pop
 
-    public static func reduce(state: NavigationRoot, with action: Pop) -> NavigationRoot {
+    public static func reduce(state: Navigation, with action: Pop) -> Navigation {
         return updateStateTree(state, for: action.mode)
     }
 
-    private static func updateStateTree(_ stateTree: NavigationRoot, for mode: PopMode) -> NavigationRoot {
+    private static func updateStateTree(_ stateTree: Navigation, for mode: PopMode) -> Navigation {
         switch mode {
         case .popToRoot:
             return popStateTree(stateTree, dropCount: stateTree.topStack.count - 1)
@@ -25,27 +25,27 @@ public struct PopReducer: Reducer {
         }
     }
 
-    private static func popStateTree(_ root: NavigationRoot, dropCount: Int) -> NavigationRoot {
+    private static func popStateTree(_ navigation: Navigation, dropCount: Int) -> Navigation {
         //TODO ??? czy na pewno top stack ? nie powinien pop robic dissmiss modala ?
-        guard dropCount > 0, root.topStack.count > dropCount else { return root }
-        let tree: NavigationTree
-        let modals: [NavigationRoot.Modal]
-        let newTopStack = Array(root.topStack.dropLast(dropCount))
-        if root.modals.isEmpty { //no modal
-            let current = root.tree.current
-            var stacks = root.tree.stacks
+        guard dropCount > 0, navigation.topStack.count > dropCount else { return navigation }
+        let root: NavigationRoot
+        let modals: [Navigation.Modal]
+        let newTopStack = Array(navigation.topStack.dropLast(dropCount))
+        if navigation.modals.isEmpty { //no modal
+            let current = navigation.root.currentItem
+            var stacks = navigation.root.stacks
             if let index = stacks.firstIndex(where: { $0.0 == current }) {
                 stacks[index] = (current, newTopStack)
             }
 
-            tree = NavigationTree(current: current, stacks: stacks)
-            modals = root.modals
+            root = NavigationRoot(current: current, stacks: stacks)
+            modals = navigation.modals
         } else { // modal
-            tree = root.tree
-            modals = Array(root.modals.dropLast()) + [.navigation(newTopStack)]
+            root = navigation.root
+            modals = Array(navigation.modals.dropLast()) + [.navigation(newTopStack)]
         }
 
-        return NavigationRoot(tree: tree, modals: modals)
+        return Navigation(root: root, modals: modals)
     }
 
 }
@@ -63,12 +63,12 @@ public struct PopMiddleware: AnyMiddleware {
                             interceptor: Interceptor<StoreAction, State>,
                             dispatcher: Dispatcher) where State: StoreState {
 
-        guard let state = state as? NavigationTreeContainingState, let action = action as? Pop else {
+        guard let state = state as? NavigationState, let action = action as? Pop else {
             interceptor.next()
             return
         }
 
-        guard state.navigationTree.topStack.count > 1 else { return }
+        guard state.navigation.topStack.count > 1 else { return }
 
         interceptor.next { _ in
             // side effect

@@ -32,7 +32,7 @@ struct ShowTestStackActionHandler: Middleware {
             storeAction = ShowModal(loader: loader, factory: factory)
         case .showOnTab:
             let factory = CompositeViewModelFactory { TestStackViewModel(isOnModal: false) }
-            storeAction = ShowOnTab(tab: EXNavigationTab.stack,
+            storeAction = Show(on: EXNavigationTab.stack,
                                     loader: loader,
                                     factory: factory)
         case .push:

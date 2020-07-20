@@ -10,30 +10,39 @@ import Loaders
 import ReMVVM
 import UIKit
 
-struct ShowOnTabReducer: Reducer {
+typealias NavigationType = [AnyNavigationItem]
+extension NavigationRoot {
+    var navigationType: NavigationType { stacks.map { $0.0 } }
+}
 
-    public static func reduce(state: NavigationRoot, with action: ShowOnTab) -> NavigationRoot {
+extension NavigationItem where Self: CaseIterable {
+    static var navigationType: NavigationType { allCases.map { AnyNavigationItem($0) }}
+}
 
-        let current = action.tab
-        var stacks: [(AnyNavigationTab, [ViewModelFactory])]
-        if action.all == state.tree.stacks.map({ $0.0 }) { //check the type is the same
-            stacks = state.tree.stacks.map {
+struct ShowReducer: Reducer {
+
+    public static func reduce(state: Navigation, with action: Show) -> Navigation {
+
+        let current = action.item
+        var stacks: [(AnyNavigationItem, [ViewModelFactory])]
+        if action.navigationType == state.root.navigationType { //check the type is the same
+            stacks = state.root.stacks.map {
                 //TODO add second tap (make it configurable)
                 guard $0.0 == current, $0.1.isEmpty else { return $0 }
                 return ($0.0, [action.controllerInfo.factory])
             }
         } else {
-            stacks = action.all.map {
+            stacks = action.navigationType.map {
                 guard $0 == current else { return ($0, []) }
                 return ($0, [action.controllerInfo.factory])
             }
         }
-        let tree = NavigationTree(current: current, stacks: stacks)
-        return NavigationRoot(tree: tree, modals: [])
+        let root = NavigationRoot(current: current, stacks: stacks)
+        return Navigation(root: root, modals: [])
     }
 }
 
-public struct ShowOnTabMiddleware: AnyMiddleware {
+public struct ShowMiddleware: AnyMiddleware {
 
     public let uiState: UIState
 
@@ -43,7 +52,7 @@ public struct ShowOnTabMiddleware: AnyMiddleware {
 
     public func onNext<State>(for state: State, action: StoreAction, interceptor: Interceptor<StoreAction, State>, dispatcher: Dispatcher) where State : StoreState {
 
-        guard let navigationState = state as? NavigationTreeContainingState, let tabAction = action as? ShowOnTab else {
+        guard let navigationState = state as? NavigationState, let navigationAction = action as? Show else {
             interceptor.next(action: action)
             return
         }
@@ -59,31 +68,38 @@ public struct ShowOnTabMiddleware: AnyMiddleware {
 //        }
 
 //TODO
-        guard navigationState.navigationTree.tree.current != tabAction.tab else { return }
+        guard navigationState.navigation.root.currentItem != navigationAction.item else { return }
 
         interceptor.next(action: action) { [uiState] state in
 
-            let wasTabOnTop = uiState.rootViewController is TabBarViewController//?.items == tabAction.all
-            let tabViewController = uiState.rootViewController as? TabBarViewController ?? {
-                let tabController = TabBarViewController(uiStateConfig: uiState.config)
-                tabController.loadViewIfNeeded()
+            let wasTabOnTop = navigationState.navigation.root.navigationType == navigationAction.navigationType
+                && uiState.rootViewController is NavigationContainerController
 
-//                tabController.items = tabAction.all
-                return tabController
-            }()
+            let containerController: NavigationContainerController
+            if wasTabOnTop {
+                containerController = uiState.rootViewController as! NavigationContainerController
+            } else {
+                let config = uiState.config.navigationConfigs.first { $0.navigationType == navigationAction.navigationType }
+                if case let .custom(configurator) = config?.config {
+                    containerController = configurator(navigationAction.navigationType)
+                } else {
+                    let tabController = TabBarViewController(config: config)
+                    tabController.loadViewIfNeeded()
 
-//            tabViewController.set(current: tabAction.tab)
+                    containerController = tabController
+                }
+            }
 
             //set up current if empty (or reset)
-            if let top = tabViewController.currentNavigationController, top.viewControllers.isEmpty {
-                top.setViewControllers([tabAction.controllerInfo.loader.load()],
+            if let top = containerController.currentNavigationController, top.viewControllers.isEmpty {
+                top.setViewControllers([navigationAction.controllerInfo.loader.load()],
                 animated: false)
             }
 
             if !wasTabOnTop {
-                uiState.setRoot(controller: tabViewController,
-                                animated: tabAction.controllerInfo.animated,
-                                navigationBarHidden: tabAction.navigationBarHidden)
+                uiState.setRoot(controller: containerController,
+                                animated: navigationAction.controllerInfo.animated,
+                                navigationBarHidden: navigationAction.navigationBarHidden)
             }
 
             // dismiss modals

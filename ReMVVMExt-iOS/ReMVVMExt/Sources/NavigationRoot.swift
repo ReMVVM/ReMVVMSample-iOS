@@ -8,9 +8,9 @@
 
 import ReMVVM
 
-public protocol NavigationTreeContainingState: StoreState {
+public protocol NavigationState: StoreState {
 
-    var navigationTree: NavigationRoot { get }
+    var navigationTree: Navigation { get }
 }
 
 public protocol NavigationElement: Hashable {
@@ -116,7 +116,7 @@ public struct NavigationTree {
     }
 }
 
-public struct NavigationRoot {
+public struct Navigation {
 
     public let modals: [Modal]
     public let tree: NavigationTree
@@ -159,8 +159,8 @@ public struct NavigationRoot {
 
 public enum NavigationTreeReducer {
 
-    public static func reduce(state: NavigationRoot, with action: StoreAction) -> NavigationRoot {
-        let reducers: [ AnyReducer<NavigationRoot>] = [
+    public static func reduce(state: Navigation, with action: StoreAction) -> Navigation {
+        let reducers: [ AnyReducer<Navigation>] = [
                         ShowOnRootReducer.any,
                         ShowOnTabReducer.any,
                         SynchronizeStateReducer.any,

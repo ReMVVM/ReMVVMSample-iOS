@@ -16,9 +16,9 @@ struct ShowProfileAction: StoreAction { }
 
 struct ShowProfileActionHandler: ConvertActionMiddleware {
 
-	func convert(action: ShowProfileAction, state: EXApplicationState) -> ShowOnTab {
+	func convert(action: ShowProfileAction, state: EXApplicationState) -> Show {
         let factory = CompositeViewModelFactory()
-        return ShowOnTab(tab: EXNavigationTab.profile, loader: Profile.initialViewController, factory: factory)
+        return Show(on: EXNavigationTab.profile, loader: Profile.initialViewController, factory: factory)
     }
 
 }
@@ -27,9 +27,9 @@ struct ShowProfileAction1: StoreAction { }
 
 struct ShowProfile1ActionHandler: ConvertActionMiddleware {
 
-    func convert(action: ShowProfileAction1, state: EXApplicationState) -> ShowOnTab {
+    func convert(action: ShowProfileAction1, state: EXApplicationState) -> Show {
         let factory = CompositeViewModelFactory()
-        return ShowOnTab(tab: EXNavigationTab.profile1, loader: Profile.initialViewController, factory: factory)
+        return Show(on: EXNavigationTab.profile1, loader: Profile.initialViewController, factory: factory)
     }
 
 }

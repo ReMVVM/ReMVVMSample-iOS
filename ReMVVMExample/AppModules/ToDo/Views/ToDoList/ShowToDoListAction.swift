@@ -16,9 +16,9 @@ struct ShowToDoListAction: StoreAction { }
 
 struct ShowToDoListActionHandler: ConvertActionMiddleware {
 
-	func convert(action: ShowToDoListAction, state: EXApplicationState) -> ShowOnTab {
+	func convert(action: ShowToDoListAction, state: EXApplicationState) -> Show {
         let factory = CompositeViewModelFactory()
-        return ShowOnTab(tab: EXNavigationTab.todo, loader: ToDoList.initialViewController, factory: factory)
+        return Show(on: EXNavigationTab.todo, loader: ToDoList.initialViewController, factory: factory)
     }
 
 }
@@ -27,9 +27,9 @@ struct ShowToDoList1Action: StoreAction { }
 
 struct ShowToDoList1ActionHandler: ConvertActionMiddleware {
 
-    func convert(action: ShowToDoList1Action, state: EXApplicationState) -> ShowOnTab {
+    func convert(action: ShowToDoList1Action, state: EXApplicationState) -> Show {
         let factory = CompositeViewModelFactory()
-        return ShowOnTab(tab: EXNavigationTab.todo1, loader: ToDoList.initialViewController, factory: factory)
+        return Show(on: EXNavigationTab.todo1, loader: ToDoList.initialViewController, factory: factory)
     }
 
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0825180A22AA8F640062A4EB /* ReMVVMExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 0825180822AA8F640062A4EB /* ReMVVMExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0825181D22AA90C50062A4EB /* NavigationRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825181122AA90C40062A4EB /* NavigationRoot.swift */; };
+		0825181D22AA90C50062A4EB /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825181122AA90C40062A4EB /* Navigation.swift */; };
 		0825181E22AA90C50062A4EB /* ReMVVM+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825181222AA90C50062A4EB /* ReMVVM+Rx.swift */; };
 		0825181F22AA90C50062A4EB /* StoreActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825181322AA90C50062A4EB /* StoreActions.swift */; };
 		0825182022AA90C50062A4EB /* SynchronizeStateReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825181522AA90C50062A4EB /* SynchronizeStateReducer.swift */; };
@@ -27,7 +27,7 @@
 		0825184322AA9E300062A4EB /* ReMVVMExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825184222AA9E300062A4EB /* ReMVVMExtension.swift */; };
 		08C7B5C1234FBD8D000CDF1E /* ViewModelProvided.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7B5C0234FBD8D000CDF1E /* ViewModelProvided.swift */; };
 		8C45B5FF23293259004B4645 /* Loaders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C45B5FE23293259004B4645 /* Loaders.framework */; };
-		8CC32408231FAE0B008A49EB /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825183922AA9BA50062A4EB /* TabBarViewModel.swift */; };
+		8CC32408231FAE0B008A49EB /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825183922AA9BA50062A4EB /* NavigationViewModel.swift */; };
 		8CC3240A231FAE0B008A49EB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825183B22AA9BA50062A4EB /* TabBarViewController.swift */; };
 		8CC3240B231FB0F0008A49EB /* ShowTabReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825181922AA90C50062A4EB /* ShowTabReducer.swift */; };
 /* End PBXBuildFile section */
@@ -36,7 +36,7 @@
 		0825180522AA8F640062A4EB /* ReMVVMExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReMVVMExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0825180822AA8F640062A4EB /* ReMVVMExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReMVVMExt.h; sourceTree = "<group>"; };
 		0825180922AA8F640062A4EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0825181122AA90C40062A4EB /* NavigationRoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRoot.swift; sourceTree = "<group>"; };
+		0825181122AA90C40062A4EB /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		0825181222AA90C50062A4EB /* ReMVVM+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReMVVM+Rx.swift"; sourceTree = "<group>"; };
 		0825181322AA90C50062A4EB /* StoreActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreActions.swift; sourceTree = "<group>"; };
 		0825181522AA90C50062A4EB /* SynchronizeStateReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizeStateReducer.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		0825182C22AA995B0062A4EB /* MVVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MVVM.framework; path = Carthage/Build/iOS/MVVM.framework; sourceTree = "<group>"; };
 		0825182D22AA995B0062A4EB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		0825183322AA9B730062A4EB /* UIState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIState.swift; sourceTree = "<group>"; };
-		0825183922AA9BA50062A4EB /* TabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		0825183922AA9BA50062A4EB /* NavigationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 		0825183B22AA9BA50062A4EB /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		0825184222AA9E300062A4EB /* ReMVVMExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReMVVMExtension.swift; sourceTree = "<group>"; };
 		08C7B5C0234FBD8D000CDF1E /* ViewModelProvided.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProvided.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			children = (
 				0825184222AA9E300062A4EB /* ReMVVMExtension.swift */,
 				0825183322AA9B730062A4EB /* UIState.swift */,
-				0825181122AA90C40062A4EB /* NavigationRoot.swift */,
+				0825181122AA90C40062A4EB /* Navigation.swift */,
 				0825181322AA90C50062A4EB /* StoreActions.swift */,
 				0825181C22AA90C50062A4EB /* ConvertActionMiddleware.swift */,
 				0825181422AA90C50062A4EB /* Reducers */,
@@ -152,7 +152,7 @@
 		0825183522AA9BA50062A4EB /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				0825183922AA9BA50062A4EB /* TabBarViewModel.swift */,
+				0825183922AA9BA50062A4EB /* NavigationViewModel.swift */,
 				0825183B22AA9BA50062A4EB /* TabBarViewController.swift */,
 			);
 			path = TabBar;
@@ -244,11 +244,11 @@
 				0825182222AA90C50062A4EB /* PopReducer.swift in Sources */,
 				0825181F22AA90C50062A4EB /* StoreActions.swift in Sources */,
 				0825183422AA9B730062A4EB /* UIState.swift in Sources */,
-				0825181D22AA90C50062A4EB /* NavigationRoot.swift in Sources */,
+				0825181D22AA90C50062A4EB /* Navigation.swift in Sources */,
 				8CC3240B231FB0F0008A49EB /* ShowTabReducer.swift in Sources */,
 				08C7B5C1234FBD8D000CDF1E /* ViewModelProvided.swift in Sources */,
 				0825182622AA90C50062A4EB /* ShowOnRootReducer.swift in Sources */,
-				8CC32408231FAE0B008A49EB /* TabBarViewModel.swift in Sources */,
+				8CC32408231FAE0B008A49EB /* NavigationViewModel.swift in Sources */,
 				0825182722AA90C50062A4EB /* ConvertActionMiddleware.swift in Sources */,
 				0825182522AA90C50062A4EB /* ShowModalReducer.swift in Sources */,
 				0825182022AA90C50062A4EB /* SynchronizeStateReducer.swift in Sources */,

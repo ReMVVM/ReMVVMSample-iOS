@@ -10,28 +10,28 @@ import RxSwift
 import UIKit
 
 //TODO mappers based on appstate
-public struct ReMVVMiOSState<AppState>: NavigationTreeContainingState {
+public struct ReMVVMiOSState<AppState>: NavigationState {
 
-    public let navigationTree: NavigationRoot
+    public let navigation: Navigation
 
     public let appState: AppState
 
     public var factory: ViewModelFactory {
         let factory: CompositeViewModelFactory
-        if let f = navigationTree.factory as? CompositeViewModelFactory {
+        if let f = navigation.factory as? CompositeViewModelFactory {
             factory = f
         } else {
-            factory = CompositeViewModelFactory(with: navigationTree.factory)
+            factory = CompositeViewModelFactory(with: navigation.factory)
         }
 
         return factory
     }
 
     public init(appState: AppState,
-                navigationTree: NavigationRoot = NavigationRoot(tree: NavigationTree(current: NavigationTree.Root.flat, stacks: [(NavigationTree.Root.flat, [])]), modals: [])) {
+                navigation: Navigation = Navigation(root: NavigationRoot(current: NavigationRoot.Main.single, stacks: [(NavigationRoot.Main.single, [])]), modals: [])) {
 
         self.appState = appState
-        self.navigationTree = navigationTree
+        self.navigation = navigation
     }
 }
 
@@ -112,7 +112,7 @@ public enum ReMVVMExtension {
             ShowModalMiddleware(uiState: uiState),
             DismissModalMiddleware(uiState: uiState),
             ShowOnRootMiddleware(uiState: uiState),
-            ShowOnTabMiddleware(uiState: uiState),
+            ShowMiddleware(uiState: uiState),
             PushMiddleware(uiState: uiState),
             PopMiddleware(uiState: uiState)
             ] + middleware

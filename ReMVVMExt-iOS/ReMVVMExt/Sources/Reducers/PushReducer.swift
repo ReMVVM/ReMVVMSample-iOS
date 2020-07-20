@@ -12,28 +12,28 @@ public struct PushReducer: Reducer {
 
     public typealias Action = Push
 
-    public static func reduce(state: NavigationRoot, with action: Push) -> NavigationRoot {
+    public static func reduce(state: Navigation, with action: Push) -> Navigation {
 
-        let tree: NavigationTree
+        let root: NavigationRoot
         // dismiss all modals without navigation
-        var modals: [NavigationRoot.Modal] = state.modals.reversed().drop { !$0.hasNavigation }.reversed()
+        var modals: [Navigation.Modal] = state.modals.reversed().drop { !$0.hasNavigation }.reversed()
 
         if let modal = modals.last, case .navigation(let stack) = modal {
             let newStack = updateStack(stack, for: action.pop)
             modals = modals.dropLast() + [.navigation(newStack + [action.controllerInfo.factory])]
-            tree = state.tree
+            root = state.root
         } else {
-            let current = state.tree.current
-            var stacks = state.tree.stacks
+            let current = state.root.currentItem
+            var stacks = state.root.stacks
             if let index = stacks.firstIndex(where: { $0.0 == current }) {
                 let stack = updateStack(stacks[index].1, for: action.pop) + [action.controllerInfo.factory]
                 stacks[index] = (current, stack)
             }
 
-            tree = NavigationTree(current: state.tree.current, stacks: stacks)
+            root = NavigationRoot(current: state.root.currentItem, stacks: stacks)
         }
 
-        return NavigationRoot(tree: tree, modals: modals)
+        return Navigation(root: root, modals: modals)
     }
 
     private static func updateStack(_ stack: [ViewModelFactory], for pop: PopMode?) -> [ViewModelFactory] {
@@ -63,7 +63,7 @@ public struct PushMiddleware: AnyMiddleware {
                             interceptor: Interceptor<StoreAction, State>,
                             dispatcher: Dispatcher) where State: StoreState {
 
-        guard state is NavigationTreeContainingState, let action = action as? Push else {
+        guard state is NavigationState, let action = action as? Push else {
             interceptor.next()
             return
         }
@@ -72,11 +72,11 @@ public struct PushMiddleware: AnyMiddleware {
 
         interceptor.next { state in
             // side effect
-            guard let state = state as? NavigationTreeContainingState else { return }
+            guard let state = state as? NavigationState else { return }
 
             //dismiss not needed modals
             uiState.dismiss(animated: action.controllerInfo.animated,
-                            number: uiState.modalControllers.count - state.navigationTree.modals.count)
+                            number: uiState.modalControllers.count - state.navigation.modals.count)
 
             guard let navigationController = uiState.navigationController else {
                 assertionFailure("PushMiddleware: No navigation Controller")

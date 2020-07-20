@@ -12,7 +12,7 @@ public struct DismissModalReducer: Reducer {
 
     public typealias Action = DismissModal
 
-    public static func reduce(state: NavigationRoot, with action: DismissModal) -> NavigationRoot {
+    public static func reduce(state: Navigation, with action: DismissModal) -> Navigation {
 
         var modals = state.modals
         if action.dismissAllViews {
@@ -20,7 +20,7 @@ public struct DismissModalReducer: Reducer {
         } else {
             modals.removeLast()
         }
-        return NavigationRoot(tree: state.tree, modals: modals)
+        return Navigation(root: state.root, modals: modals)
     }
 
 }
@@ -38,7 +38,7 @@ public struct DismissModalMiddleware: AnyMiddleware {
                             interceptor: Interceptor<StoreAction, State>,
                             dispatcher: Dispatcher) where State: StoreState {
 
-        guard state is NavigationTreeContainingState, let action = action as? DismissModal else {
+        guard state is NavigationState, let action = action as? DismissModal else {
             interceptor.next()
             return
         }
