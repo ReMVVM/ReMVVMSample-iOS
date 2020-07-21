@@ -3,20 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		081978962482A7AE00A24942 /* TabBarItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 081978932482A7AE00A24942 /* TabBarItemView.xib */; };
 		081978972482A7AE00A24942 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081978952482A7AE00A24942 /* TabBarItemView.swift */; };
+		08A8FCDF24C608AA00A7A9F7 /* Frameworks in Frameworks */ = {isa = PBXBuildFile; productRef = 08A8FCDE24C608AA00A7A9F7 /* Frameworks */; };
 		375966B223DB56E00031F456 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375966AE23DB56E00031F456 /* Onboarding.storyboard */; };
 		375966B323DB56E00031F456 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375966AF23DB56E00031F456 /* OnboardingViewController.swift */; };
 		375966B423DB56E00031F456 /* ShowOnboardingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375966B023DB56E00031F456 /* ShowOnboardingAction.swift */; };
 		375966B523DB56E00031F456 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375966B123DB56E00031F456 /* OnboardingViewModel.swift */; };
-		375966B923DB58240031F456 /* Loaders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 375966B823DB58240031F456 /* Loaders.framework */; };
-		375966BA23DB58240031F456 /* Loaders.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 375966B823DB58240031F456 /* Loaders.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		375966BC23DB58380031F456 /* MVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 375966BB23DB58380031F456 /* MVVM.framework */; };
-		375966BD23DB58380031F456 /* MVVM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 375966BB23DB58380031F456 /* MVVM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3770521123DB62E000D48D04 /* UANavigationTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770521023DB62E000D48D04 /* UANavigationTab.swift */; };
 		3770521323DB62ED00D48D04 /* EXTabItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3770521223DB62ED00D48D04 /* EXTabItemView.xib */; };
 		3770521523DB62F600D48D04 /* EXTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770521423DB62F600D48D04 /* EXTabItemView.swift */; };
@@ -53,20 +50,10 @@
 		37C72D9323D618DE00A364FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C72D9223D618DE00A364FF /* Assets.xcassets */; };
 		37C72D9623D618DE00A364FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C72D9423D618DE00A364FF /* LaunchScreen.storyboard */; };
 		37C72DA123D618DE00A364FF /* ReMVVMExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C72DA023D618DE00A364FF /* ReMVVMExampleTests.swift */; };
-		37C72DF223D82A4B00A364FF /* ReMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C72DF023D82A4B00A364FF /* ReMVVM.framework */; };
-		37C72DF323D82A4B00A364FF /* ReMVVM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37C72DF023D82A4B00A364FF /* ReMVVM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37C72DFA23D837F300A364FF /* EXApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C72DF923D837F300A364FF /* EXApplicationState.swift */; };
 		37C72DFE23D8381D00A364FF /* EXUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C72DFD23D8381D00A364FF /* EXUIApplication.swift */; };
 		37C72E0123D98BD700A364FF /* AppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C72E0023D98BD700A364FF /* AppConfigurator.swift */; };
 		37C72E0323D9982D00A364FF /* CommonCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C72E0223D9982D00A364FF /* CommonCoordinator.swift */; };
-		37D59EAA23E92AF5005F0D6D /* ReMVVMExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D59EA923E92AE8005F0D6D /* ReMVVMExt.framework */; };
-		37D59EAB23E92AF5005F0D6D /* ReMVVMExt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D59EA923E92AE8005F0D6D /* ReMVVMExt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37D59EAF23E92B80005F0D6D /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D59EAC23E92B80005F0D6D /* RxRelay.framework */; };
-		37D59EB023E92B80005F0D6D /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D59EAC23E92B80005F0D6D /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37D59EB123E92B80005F0D6D /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D59EAD23E92B80005F0D6D /* RxCocoa.framework */; };
-		37D59EB223E92B80005F0D6D /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D59EAD23E92B80005F0D6D /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37D59EB323E92B80005F0D6D /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D59EAE23E92B80005F0D6D /* RxSwift.framework */; };
-		37D59EB423E92B80005F0D6D /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D59EAE23E92B80005F0D6D /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37D65F0D23DA78F200703E64 /* EXBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D65F0C23DA78F200703E64 /* EXBaseViewController.swift */; };
 		37D65F1023DA792200703E64 /* EXNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D65F0F23DA792200703E64 /* EXNavigationController.swift */; };
 /* End PBXBuildFile section */
@@ -79,13 +66,6 @@
 			remoteGlobalIDString = 37C72D8523D618DD00A364FF;
 			remoteInfo = ReMVVMExample;
 		};
-		37D59EA823E92AE8005F0D6D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 37D59EA423E92AE8005F0D6D /* ReMVVMExt.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0825180522AA8F640062A4EB;
-			remoteInfo = ReMVVMExt;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,13 +75,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				37D59EB223E92B80005F0D6D /* RxCocoa.framework in Embed Frameworks */,
-				375966BA23DB58240031F456 /* Loaders.framework in Embed Frameworks */,
-				37D59EB423E92B80005F0D6D /* RxSwift.framework in Embed Frameworks */,
-				37D59EAB23E92AF5005F0D6D /* ReMVVMExt.framework in Embed Frameworks */,
-				375966BD23DB58380031F456 /* MVVM.framework in Embed Frameworks */,
-				37C72DF323D82A4B00A364FF /* ReMVVM.framework in Embed Frameworks */,
-				37D59EB023E92B80005F0D6D /* RxRelay.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,12 +84,11 @@
 /* Begin PBXFileReference section */
 		081978932482A7AE00A24942 /* TabBarItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarItemView.xib; sourceTree = "<group>"; };
 		081978952482A7AE00A24942 /* TabBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
+		08A8FCDD24C6073700A7A9F7 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
 		375966AE23DB56E00031F456 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		375966AF23DB56E00031F456 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		375966B023DB56E00031F456 /* ShowOnboardingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOnboardingAction.swift; sourceTree = "<group>"; };
 		375966B123DB56E00031F456 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
-		375966B823DB58240031F456 /* Loaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Loaders.framework; path = Carthage/Build/iOS/Loaders.framework; sourceTree = "<group>"; };
-		375966BB23DB58380031F456 /* MVVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MVVM.framework; path = Carthage/Build/iOS/MVVM.framework; sourceTree = "<group>"; };
 		3770521023DB62E000D48D04 /* UANavigationTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UANavigationTab.swift; sourceTree = "<group>"; };
 		3770521223DB62ED00D48D04 /* EXTabItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EXTabItemView.xib; sourceTree = "<group>"; };
 		3770521423DB62F600D48D04 /* EXTabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXTabItemView.swift; sourceTree = "<group>"; };
@@ -157,15 +129,10 @@
 		37C72D9C23D618DE00A364FF /* ReMVVMExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReMVVMExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C72DA023D618DE00A364FF /* ReMVVMExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReMVVMExampleTests.swift; sourceTree = "<group>"; };
 		37C72DA223D618DE00A364FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		37C72DF023D82A4B00A364FF /* ReMVVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReMVVM.framework; path = Carthage/Build/iOS/ReMVVM.framework; sourceTree = "<group>"; };
 		37C72DF923D837F300A364FF /* EXApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXApplicationState.swift; sourceTree = "<group>"; };
 		37C72DFD23D8381D00A364FF /* EXUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXUIApplication.swift; sourceTree = "<group>"; };
 		37C72E0023D98BD700A364FF /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
 		37C72E0223D9982D00A364FF /* CommonCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCoordinator.swift; sourceTree = "<group>"; };
-		37D59EA423E92AE8005F0D6D /* ReMVVMExt.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReMVVMExt.xcodeproj; path = "ReMVVMExt-iOS/ReMVVMExt.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		37D59EAC23E92B80005F0D6D /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
-		37D59EAD23E92B80005F0D6D /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
-		37D59EAE23E92B80005F0D6D /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		37D65F0C23DA78F200703E64 /* EXBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXBaseViewController.swift; sourceTree = "<group>"; };
 		37D65F0F23DA792200703E64 /* EXNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,13 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37D59EB123E92B80005F0D6D /* RxCocoa.framework in Frameworks */,
-				375966B923DB58240031F456 /* Loaders.framework in Frameworks */,
-				37D59EB323E92B80005F0D6D /* RxSwift.framework in Frameworks */,
-				37D59EAA23E92AF5005F0D6D /* ReMVVMExt.framework in Frameworks */,
-				375966BC23DB58380031F456 /* MVVM.framework in Frameworks */,
-				37C72DF223D82A4B00A364FF /* ReMVVM.framework in Frameworks */,
-				37D59EAF23E92B80005F0D6D /* RxRelay.framework in Frameworks */,
+				08A8FCDF24C608AA00A7A9F7 /* Frameworks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +310,7 @@
 				37C72D8823D618DD00A364FF /* ReMVVMExample */,
 				37C72D9F23D618DE00A364FF /* ReMVVMExampleTests */,
 				37C72D8723D618DD00A364FF /* Products */,
-				37C72DEB23D8292800A364FF /* Frameworks */,
+				08A8FCDD24C6073700A7A9F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -386,19 +347,6 @@
 			path = ReMVVMExampleTests;
 			sourceTree = "<group>";
 		};
-		37C72DEB23D8292800A364FF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				37D59EAD23E92B80005F0D6D /* RxCocoa.framework */,
-				37D59EAC23E92B80005F0D6D /* RxRelay.framework */,
-				37D59EAE23E92B80005F0D6D /* RxSwift.framework */,
-				375966BB23DB58380031F456 /* MVVM.framework */,
-				375966B823DB58240031F456 /* Loaders.framework */,
-				37C72DF023D82A4B00A364FF /* ReMVVM.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		37C72DFF23D98B6600A364FF /* ReMVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,21 +373,12 @@
 		37C72E0523D9983B00A364FF /* AppModules */ = {
 			isa = PBXGroup;
 			children = (
-				37D59EA423E92AE8005F0D6D /* ReMVVMExt.xcodeproj */,
 				37C72E0423D9983100A364FF /* EXCommon */,
 				3770522F23DF2A4A00D48D04 /* ToDo */,
 				3770525123DF2B8800D48D04 /* Profile */,
 				3770525223DF2B9400D48D04 /* Stack */,
 			);
 			path = AppModules;
-			sourceTree = "<group>";
-		};
-		37D59EA523E92AE8005F0D6D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				37D59EA923E92AE8005F0D6D /* ReMVVMExt.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		37D65F0E23DA790A00703E64 /* BaseControllers */ = {
@@ -470,6 +409,7 @@
 			);
 			name = ReMVVMExample;
 			packageProductDependencies = (
+				08A8FCDE24C608AA00A7A9F7 /* Frameworks */,
 			);
 			productName = ReMVVMExample;
 			productReference = 37C72D8623D618DD00A364FF /* ReMVVMExample.app */;
@@ -525,12 +465,6 @@
 			);
 			productRefGroup = 37C72D8723D618DD00A364FF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 37D59EA523E92AE8005F0D6D /* Products */;
-					ProjectRef = 37D59EA423E92AE8005F0D6D /* ReMVVMExt.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				37C72D8523D618DD00A364FF /* ReMVVMExample */,
@@ -538,16 +472,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		37D59EA923E92AE8005F0D6D /* ReMVVMExt.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ReMVVMExt.framework;
-			remoteRef = 37D59EA823E92AE8005F0D6D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		37C72D8423D618DD00A364FF /* Resources */ = {
@@ -888,6 +812,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		08A8FCDE24C608AA00A7A9F7 /* Frameworks */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Frameworks;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 37C72D7E23D618DD00A364FF /* Project object */;
 }
