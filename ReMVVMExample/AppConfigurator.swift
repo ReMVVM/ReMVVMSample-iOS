@@ -8,10 +8,12 @@
 
 import ReMVVM
 import UIKit
+import EXCommon
+import ToDo
 
 struct AppConfigurator {
     static var window: UIWindow?
-    static var store: Store<EXApplicationState>?
+    static var store: Dispatcher?
     static var wireframes: [Any]?
 
     static func allMiddleware() -> [AnyMiddleware] {
@@ -21,11 +23,11 @@ struct AppConfigurator {
             + ToDoCoordinator.createMiddlewares()
     }
 
-    @discardableResult static func setupAplication(with state: ApplicationState = .empty) -> Store<EXApplicationState> {
+    @discardableResult static func setupAplication(with state: ApplicationState = .empty) -> Dispatcher & Subject {
 
         let window = UIWindow(frame: UIScreen.main.bounds)
 
-        let store = EXUIApplication.initialize(with: window,
+        let dispatcher = EXUIApplication.initialize(with: window,
                                                middlewares: AppConfigurator.allMiddleware(),
                                                state: state)
 
@@ -33,16 +35,13 @@ struct AppConfigurator {
         AppConfigurator.window = window
         AppConfigurator.store = store
 
-
-        //let aa = Package()
-
         wireframes = [
-            CommonCoordinator(store: store),
-            ProfileCoordinator(store: store),
-            StackCoordinator(store: store),
-            ToDoCoordinator(store: store)
+            CommonCoordinator(dispatcher: dispatcher),
+            ProfileCoordinator(dispatcher: dispatcher),
+            StackCoordinator(dispatcher: dispatcher),
+            ToDoCoordinator(dispatcher: dispatcher)
         ]
 
-        return store
+        return dispatcher
     }
 }

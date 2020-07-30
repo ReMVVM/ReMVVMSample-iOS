@@ -1,5 +1,5 @@
 //  
-//  ToDoListViewController.swift
+//  ToDoItemViewController.swift
 //  ReMVVMExample
 //
 //  Created by Grzegorz Jurzak on 27/01/2020.
@@ -11,10 +11,11 @@ import ReMVVMExt
 import RxCocoa
 import RxSwift
 import UIKit
+import EXCommon
 
-class ToDoListViewController: EXBaseViewController {
+class ToDoItemViewController: EXBaseViewController {
 
-    @Provided private var mainViewModel: ToDoListViewModel?
+    @Provided private var mainViewModel: ToDoItemViewModel?
 
     private let disposeBag = DisposeBag()
 
@@ -26,11 +27,11 @@ class ToDoListViewController: EXBaseViewController {
         bindView(with: viewModel)
     }
 
-    private func bind(_ viewModel: ToDoListViewModel) {
-        viewModel.title.bind(to: rx.title).disposed(by: disposeBag)
+    private func bind(_ viewModel: ToDoItemViewModel) {
+
     }
 
-    private func bindView(with viewModel: ToDoListViewModel) {
+    private func bindView(with viewModel: ToDoItemViewModel) {
 
     }
 

@@ -9,21 +9,22 @@
 import ReMVVM
 import ReMVVMExt
 
-typealias EXApplicationState = ReMVVMiOSState<ApplicationState>
+// probably not needed anymoore as far there is no need foor custom nav 
+//public typealias EXApplicationState = NavigationStateIOS<ApplicationState>
 
-struct ApplicationState {
+public struct ApplicationState {
 
-    static let empty = ApplicationState()
+    public static let empty = ApplicationState()
 
-    let userState: UserState
+    public let userState: UserState
 
-    init(userState: UserState = .empty) {
+    public init(userState: UserState = .empty) {
 
         self.userState = userState
     }
 }
 
-struct UserState {
+public struct UserState {
     public let user: User?
 
     public var isLoggedIn: Bool { return user != nil }

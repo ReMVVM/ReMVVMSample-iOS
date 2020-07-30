@@ -9,14 +9,13 @@
 import Loaders
 import ReMVVM
 import ReMVVMExt
+import EXCommon
 
 enum Login: Storyboard, HasInitialController { }
 
-struct ShowLoginAction: StoreAction { }
-
 struct ShowLoginActionHandler: ConvertActionMiddleware {
 
-	func convert(action: ShowLoginAction, state: EXApplicationState) -> ShowModal {
+	func convert(action: ShowLoginAction, state: ApplicationState) -> ShowModal {
         let factory = CompositeViewModelFactory()
         return ShowModal(loader: Login.initialViewController, factory: factory, presentationStyle: .formSheet)
     }

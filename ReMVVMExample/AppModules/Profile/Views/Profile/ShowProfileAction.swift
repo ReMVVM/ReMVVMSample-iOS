@@ -9,25 +9,24 @@
 import Loaders
 import ReMVVM
 import ReMVVMExt
+import EXCommon
+
 
 enum Profile: Storyboard, HasInitialController { }
 
-struct ShowProfileAction: StoreAction { }
-
 struct ShowProfileActionHandler: ConvertActionMiddleware {
 
-	func convert(action: ShowProfileAction, state: EXApplicationState) -> Show {
+
+	func convert(action: ShowProfileAction, state: ApplicationState) -> Show {
         let factory = CompositeViewModelFactory()
         return Show(on: EXNavigationTab.profile, loader: Profile.initialViewController, factory: factory)
     }
 
 }
 
-struct ShowProfileAction1: StoreAction { }
-
 struct ShowProfile1ActionHandler: ConvertActionMiddleware {
 
-    func convert(action: ShowProfileAction1, state: EXApplicationState) -> Show {
+    func convert(action: ShowProfileAction1, state: ApplicationState) -> Show {
         let factory = CompositeViewModelFactory()
         return Show(on: EXNavigationTab.profile1, loader: Profile.initialViewController, factory: factory)
     }

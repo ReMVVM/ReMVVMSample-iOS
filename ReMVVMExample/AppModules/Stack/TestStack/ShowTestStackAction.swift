@@ -9,18 +9,15 @@
 import Loaders
 import ReMVVM
 import ReMVVMExt
+import EXCommon
 
 enum TestStack: Storyboard, HasInitialController { }
 
-enum ShowTestStackAction: StoreAction {
-    case showOnTab, showModal, push
-}
-
 struct ShowTestStackActionHandler: Middleware {
 
-    func onNext(for state: EXApplicationState,
+    func onNext(for state: ApplicationState,
                 action: ShowTestStackAction,
-                interceptor: Interceptor<ShowTestStackAction, EXApplicationState>,
+                interceptor: Interceptor<ShowTestStackAction, ApplicationState>,
                 dispatcher: Dispatcher) {
 
         let loader = TestStack.initialViewController

@@ -8,6 +8,7 @@
 
 import ReMVVM
 import RxSwift
+import EXCommon
 
 struct ProfileViewModel: Initializable, StateAssociated, ReMVVMDriven {
 
