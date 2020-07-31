@@ -20,10 +20,6 @@ public struct ShowProfileAction: StoreAction { }
 
 public struct ShowToDoListAction: StoreAction { }
 
-public struct ShowProfileAction1: StoreAction { }
-
-public struct ShowToDoList1Action: StoreAction { }
-
 public class CommonCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {

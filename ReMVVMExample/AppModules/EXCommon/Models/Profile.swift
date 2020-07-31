@@ -8,27 +8,27 @@
 
 import Foundation
 
-public struct User: Codable {
+struct User: Codable {
 
-    public let username: String
+    let username: String
 
-    public init(username: String = "jane_doe") {
+    init(username: String = "jane_doe") {
         self.username = username
     }
 
 }
 
-public struct LoginQuery {
+struct LoginQuery {
 
     private let username: String
     private let password: String
 
-    public init(username: String, password: String) {
+    init(username: String, password: String) {
         self.username = username
         self.password = password
     }
 
-    public func tryLogin() -> (user: User?, error: String?) {
+    func tryLogin() -> (user: User?, error: String?) {
         guard !username.isEmpty else {
             return (user: nil, error: "Username is required")
         }
