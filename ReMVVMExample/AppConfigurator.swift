@@ -8,8 +8,6 @@
 
 import ReMVVM
 import UIKit
-import EXCommon
-import ToDo
 
 struct AppConfigurator {
     static var window: UIWindow?

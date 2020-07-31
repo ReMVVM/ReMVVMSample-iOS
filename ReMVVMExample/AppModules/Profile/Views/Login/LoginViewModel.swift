@@ -9,7 +9,6 @@
 import ReMVVM
 import ReMVVMExt
 import RxSwift
-import EXCommon
 
 enum LoginResult {
     case success

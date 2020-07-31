@@ -10,7 +10,6 @@ import ReMVVM
 import ReMVVMExt
 import UIKit
 import Loaders
-import EXCommon
 
 enum LaunchScreen: Storyboard, HasInitialController { }
 
@@ -65,10 +64,6 @@ private extension EXNavigationTab {
             return "transfer"
         case .profile:
             return "user"
-            case .todo1:
-                return "list"
-            case .profile1:
-                return "user"
         }
     }
 

@@ -11,7 +11,6 @@ import ReMVVMExt
 import RxCocoa
 import RxSwift
 import UIKit
-import EXCommon
 
 class TestStackViewController: EXBaseViewController {
 

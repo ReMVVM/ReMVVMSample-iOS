@@ -9,7 +9,6 @@
 import ReMVVM
 import ReMVVMExt
 import RxSwift
-import EXCommon
 
 class ProfileCoordinator {
 
@@ -17,7 +16,6 @@ class ProfileCoordinator {
         return [
             ShowLoginActionHandler().any,
             ShowProfileActionHandler().any,
-            ShowProfile1ActionHandler().any
         ]
     }
 

@@ -9,13 +9,31 @@
 /* Begin PBXBuildFile section */
 		081978962482A7AE00A24942 /* TabBarItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 081978932482A7AE00A24942 /* TabBarItemView.xib */; };
 		081978972482A7AE00A24942 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081978952482A7AE00A24942 /* TabBarItemView.swift */; };
-		08A8FD6E24C71C2000A7A9F7 /* EXCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A8FD0124C718D600A7A9F7 /* EXCommon.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		08A8FD6F24C71C2000A7A9F7 /* EXCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08A8FD0124C718D600A7A9F7 /* EXCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		08A8FD7024C71C2000A7A9F7 /* ToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A8FD1F24C7195900A7A9F7 /* ToDo.framework */; };
-		08A8FD7124C71C2000A7A9F7 /* ToDo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08A8FD1F24C7195900A7A9F7 /* ToDo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		087739B524D389AC0043952B /* Frameworks in Frameworks */ = {isa = PBXBuildFile; productRef = 087739B424D389AC0043952B /* Frameworks */; };
 		08A8FD8B24C7222700A7A9F7 /* EXUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8FD8A24C7222700A7A9F7 /* EXUIApplication.swift */; };
-		08A8FD9724C7255200A7A9F7 /* Frameworks in Frameworks */ = {isa = PBXBuildFile; productRef = 08A8FD9624C7255200A7A9F7 /* Frameworks */; };
-		08A8FD9824C7255200A7A9F7 /* Frameworks in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 08A8FD9624C7255200A7A9F7 /* Frameworks */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		08BAD1FE24D3857500347553 /* UANavigationTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1EB24D3857500347553 /* UANavigationTab.swift */; };
+		08BAD1FF24D3857500347553 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BAD1EC24D3857500347553 /* TabBar.storyboard */; };
+		08BAD20024D3857500347553 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1ED24D3857500347553 /* TabBarViewController.swift */; };
+		08BAD20124D3857500347553 /* EXTabItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08BAD1EE24D3857500347553 /* EXTabItemView.xib */; };
+		08BAD20224D3857500347553 /* EXTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1EF24D3857500347553 /* EXTabItemView.swift */; };
+		08BAD20324D3857500347553 /* EXNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1F024D3857500347553 /* EXNavigationController.swift */; };
+		08BAD20424D3857500347553 /* EXBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1F124D3857500347553 /* EXBaseViewController.swift */; };
+		08BAD20524D3857500347553 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1F324D3857500347553 /* Profile.swift */; };
+		08BAD20624D3857500347553 /* CommonCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1F424D3857500347553 /* CommonCoordinator.swift */; };
+		08BAD20724D3857500347553 /* EXApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1F624D3857500347553 /* EXApplicationState.swift */; };
+		08BAD20824D3857500347553 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BAD1F924D3857500347553 /* Onboarding.storyboard */; };
+		08BAD20924D3857500347553 /* ShowOnboardingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1FA24D3857500347553 /* ShowOnboardingAction.swift */; };
+		08BAD20A24D3857500347553 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1FB24D3857500347553 /* OnboardingViewController.swift */; };
+		08BAD20B24D3857500347553 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD1FC24D3857500347553 /* OnboardingViewModel.swift */; };
+		08BAD21C24D3858100347553 /* ToDoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD20E24D3858100347553 /* ToDoCoordinator.swift */; };
+		08BAD21D24D3858100347553 /* ShowToDoListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD21224D3858100347553 /* ShowToDoListAction.swift */; };
+		08BAD21E24D3858100347553 /* ToDoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BAD21324D3858100347553 /* ToDoList.storyboard */; };
+		08BAD21F24D3858100347553 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD21424D3858100347553 /* ToDoListViewController.swift */; };
+		08BAD22024D3858100347553 /* ToDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD21524D3858100347553 /* ToDoListViewModel.swift */; };
+		08BAD22124D3858100347553 /* ShowToDoItemAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD21724D3858100347553 /* ShowToDoItemAction.swift */; };
+		08BAD22224D3858100347553 /* ToDoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD21824D3858100347553 /* ToDoItemViewController.swift */; };
+		08BAD22324D3858100347553 /* ToDoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BAD21924D3858100347553 /* ToDoItemViewModel.swift */; };
+		08BAD22424D3858100347553 /* ToDoItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BAD21A24D3858100347553 /* ToDoItem.storyboard */; };
 		3770524E23DF2B7600D48D04 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770524D23DF2B7600D48D04 /* ProfileCoordinator.swift */; };
 		3770525023DF2B8100D48D04 /* StackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770524F23DF2B8100D48D04 /* StackCoordinator.swift */; };
 		3770525723DF2BAA00D48D04 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3770525323DF2BAA00D48D04 /* Profile.storyboard */; };
@@ -41,27 +59,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		08A8FD0024C718D600A7A9F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 08A8FCFC24C718D500A7A9F7 /* EXCommon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 08A8FCF124C718D500A7A9F7;
-			remoteInfo = EXCommon;
-		};
-		08A8FD1E24C7195900A7A9F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 08A8FD1A24C7195800A7A9F7 /* ToDo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 08A8FD0F24C7195800A7A9F7;
-			remoteInfo = ToDo;
-		};
-		08A8FD9424C7252700A7A9F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 08A8FCFC24C718D500A7A9F7 /* EXCommon.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 08A8FCF024C718D500A7A9F7;
-			remoteInfo = EXCommon;
-		};
 		37C72D9D23D618DE00A364FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 37C72D7E23D618DD00A364FF /* Project object */;
@@ -78,9 +75,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				08A8FD9824C7255200A7A9F7 /* Frameworks in Embed Frameworks */,
-				08A8FD7124C71C2000A7A9F7 /* ToDo.framework in Embed Frameworks */,
-				08A8FD6F24C71C2000A7A9F7 /* EXCommon.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,9 +85,30 @@
 		081978932482A7AE00A24942 /* TabBarItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarItemView.xib; sourceTree = "<group>"; };
 		081978952482A7AE00A24942 /* TabBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		08A8FCDD24C6073700A7A9F7 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
-		08A8FCFC24C718D500A7A9F7 /* EXCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EXCommon.xcodeproj; path = ReMVVMExample/Modules/EXCommon/EXCommon.xcodeproj; sourceTree = SOURCE_ROOT; };
-		08A8FD1A24C7195800A7A9F7 /* ToDo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToDo.xcodeproj; path = ReMVVMExample/Modules/ToDo/ToDo.xcodeproj; sourceTree = SOURCE_ROOT; };
 		08A8FD8A24C7222700A7A9F7 /* EXUIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXUIApplication.swift; sourceTree = "<group>"; };
+		08BAD1EB24D3857500347553 /* UANavigationTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UANavigationTab.swift; sourceTree = "<group>"; };
+		08BAD1EC24D3857500347553 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		08BAD1ED24D3857500347553 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		08BAD1EE24D3857500347553 /* EXTabItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EXTabItemView.xib; sourceTree = "<group>"; };
+		08BAD1EF24D3857500347553 /* EXTabItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTabItemView.swift; sourceTree = "<group>"; };
+		08BAD1F024D3857500347553 /* EXNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXNavigationController.swift; sourceTree = "<group>"; };
+		08BAD1F124D3857500347553 /* EXBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXBaseViewController.swift; sourceTree = "<group>"; };
+		08BAD1F324D3857500347553 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		08BAD1F424D3857500347553 /* CommonCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCoordinator.swift; sourceTree = "<group>"; };
+		08BAD1F624D3857500347553 /* EXApplicationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXApplicationState.swift; sourceTree = "<group>"; };
+		08BAD1F924D3857500347553 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		08BAD1FA24D3857500347553 /* ShowOnboardingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOnboardingAction.swift; sourceTree = "<group>"; };
+		08BAD1FB24D3857500347553 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		08BAD1FC24D3857500347553 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		08BAD20E24D3858100347553 /* ToDoCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCoordinator.swift; sourceTree = "<group>"; };
+		08BAD21224D3858100347553 /* ShowToDoListAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowToDoListAction.swift; sourceTree = "<group>"; };
+		08BAD21324D3858100347553 /* ToDoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ToDoList.storyboard; sourceTree = "<group>"; };
+		08BAD21424D3858100347553 /* ToDoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
+		08BAD21524D3858100347553 /* ToDoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListViewModel.swift; sourceTree = "<group>"; };
+		08BAD21724D3858100347553 /* ShowToDoItemAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowToDoItemAction.swift; sourceTree = "<group>"; };
+		08BAD21824D3858100347553 /* ToDoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItemViewController.swift; sourceTree = "<group>"; };
+		08BAD21924D3858100347553 /* ToDoItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItemViewModel.swift; sourceTree = "<group>"; };
+		08BAD21A24D3858100347553 /* ToDoItem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ToDoItem.storyboard; sourceTree = "<group>"; };
 		3770524D23DF2B7600D48D04 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		3770524F23DF2B8100D48D04 /* StackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackCoordinator.swift; sourceTree = "<group>"; };
 		3770525323DF2BAA00D48D04 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -127,9 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08A8FD9724C7255200A7A9F7 /* Frameworks in Frameworks */,
-				08A8FD7024C71C2000A7A9F7 /* ToDo.framework in Frameworks */,
-				08A8FD6E24C71C2000A7A9F7 /* EXCommon.framework in Frameworks */,
+				087739B524D389AC0043952B /* Frameworks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,20 +165,105 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		08A8FCFD24C718D500A7A9F7 /* Products */ = {
+		08BAD1E824D3857500347553 /* EXCommon */ = {
 			isa = PBXGroup;
 			children = (
-				08A8FD0124C718D600A7A9F7 /* EXCommon.framework */,
+				08BAD1E924D3857500347553 /* BaseControllers */,
+				08BAD1F224D3857500347553 /* Models */,
+				08BAD1F424D3857500347553 /* CommonCoordinator.swift */,
+				08BAD1F624D3857500347553 /* EXApplicationState.swift */,
+				08BAD1F724D3857500347553 /* Views */,
 			);
-			name = Products;
+			path = EXCommon;
 			sourceTree = "<group>";
 		};
-		08A8FD1B24C7195800A7A9F7 /* Products */ = {
+		08BAD1E924D3857500347553 /* BaseControllers */ = {
 			isa = PBXGroup;
 			children = (
-				08A8FD1F24C7195900A7A9F7 /* ToDo.framework */,
+				08BAD1EA24D3857500347553 /* TabBar */,
+				08BAD1F024D3857500347553 /* EXNavigationController.swift */,
+				08BAD1F124D3857500347553 /* EXBaseViewController.swift */,
 			);
-			name = Products;
+			path = BaseControllers;
+			sourceTree = "<group>";
+		};
+		08BAD1EA24D3857500347553 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				08BAD1EB24D3857500347553 /* UANavigationTab.swift */,
+				08BAD1EC24D3857500347553 /* TabBar.storyboard */,
+				08BAD1ED24D3857500347553 /* TabBarViewController.swift */,
+				08BAD1EE24D3857500347553 /* EXTabItemView.xib */,
+				08BAD1EF24D3857500347553 /* EXTabItemView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		08BAD1F224D3857500347553 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				08BAD1F324D3857500347553 /* Profile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		08BAD1F724D3857500347553 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08BAD1F824D3857500347553 /* Onboarding */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		08BAD1F824D3857500347553 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				08BAD1F924D3857500347553 /* Onboarding.storyboard */,
+				08BAD1FA24D3857500347553 /* ShowOnboardingAction.swift */,
+				08BAD1FB24D3857500347553 /* OnboardingViewController.swift */,
+				08BAD1FC24D3857500347553 /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		08BAD20D24D3858100347553 /* ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				08BAD20E24D3858100347553 /* ToDoCoordinator.swift */,
+				08BAD21024D3858100347553 /* Views */,
+			);
+			path = ToDo;
+			sourceTree = "<group>";
+		};
+		08BAD21024D3858100347553 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08BAD21124D3858100347553 /* ToDoList */,
+				08BAD21624D3858100347553 /* ToDoItem */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		08BAD21124D3858100347553 /* ToDoList */ = {
+			isa = PBXGroup;
+			children = (
+				08BAD21224D3858100347553 /* ShowToDoListAction.swift */,
+				08BAD21324D3858100347553 /* ToDoList.storyboard */,
+				08BAD21424D3858100347553 /* ToDoListViewController.swift */,
+				08BAD21524D3858100347553 /* ToDoListViewModel.swift */,
+			);
+			path = ToDoList;
+			sourceTree = "<group>";
+		};
+		08BAD21624D3858100347553 /* ToDoItem */ = {
+			isa = PBXGroup;
+			children = (
+				08BAD21724D3858100347553 /* ShowToDoItemAction.swift */,
+				08BAD21824D3858100347553 /* ToDoItemViewController.swift */,
+				08BAD21924D3858100347553 /* ToDoItemViewModel.swift */,
+				08BAD21A24D3858100347553 /* ToDoItem.storyboard */,
+			);
+			path = ToDoItem;
 			sourceTree = "<group>";
 		};
 		3770525123DF2B8800D48D04 /* Profile */ = {
@@ -285,8 +383,8 @@
 		37C72E0523D9983B00A364FF /* AppModules */ = {
 			isa = PBXGroup;
 			children = (
-				08A8FD1A24C7195800A7A9F7 /* ToDo.xcodeproj */,
-				08A8FCFC24C718D500A7A9F7 /* EXCommon.xcodeproj */,
+				08BAD20D24D3858100347553 /* ToDo */,
+				08BAD1E824D3857500347553 /* EXCommon */,
 				3770525123DF2B8800D48D04 /* Profile */,
 				3770525223DF2B9400D48D04 /* Stack */,
 			);
@@ -308,11 +406,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				08A8FD9524C7252700A7A9F7 /* PBXTargetDependency */,
 			);
 			name = ReMVVMExample;
 			packageProductDependencies = (
-				08A8FD9624C7255200A7A9F7 /* Frameworks */,
+				087739B424D389AC0043952B /* Frameworks */,
 			);
 			productName = ReMVVMExample;
 			productReference = 37C72D8623D618DD00A364FF /* ReMVVMExample.app */;
@@ -368,16 +465,6 @@
 			);
 			productRefGroup = 37C72D8723D618DD00A364FF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 08A8FCFD24C718D500A7A9F7 /* Products */;
-					ProjectRef = 08A8FCFC24C718D500A7A9F7 /* EXCommon.xcodeproj */;
-				},
-				{
-					ProductGroup = 08A8FD1B24C7195800A7A9F7 /* Products */;
-					ProjectRef = 08A8FD1A24C7195800A7A9F7 /* ToDo.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				37C72D8523D618DD00A364FF /* ReMVVMExample */,
@@ -386,33 +473,21 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		08A8FD0124C718D600A7A9F7 /* EXCommon.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = EXCommon.framework;
-			remoteRef = 08A8FD0024C718D600A7A9F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		08A8FD1F24C7195900A7A9F7 /* ToDo.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ToDo.framework;
-			remoteRef = 08A8FD1E24C7195900A7A9F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		37C72D8423D618DD00A364FF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08BAD20124D3857500347553 /* EXTabItemView.xib in Resources */,
 				3770525723DF2BAA00D48D04 /* Profile.storyboard in Resources */,
 				3770526A23DF2BE600D48D04 /* TestStack.storyboard in Resources */,
+				08BAD22424D3858100347553 /* ToDoItem.storyboard in Resources */,
 				37C72D9623D618DE00A364FF /* LaunchScreen.storyboard in Resources */,
+				08BAD21E24D3858100347553 /* ToDoList.storyboard in Resources */,
 				081978962482A7AE00A24942 /* TabBarItemView.xib in Resources */,
 				37C72D9323D618DE00A364FF /* Assets.xcassets in Resources */,
+				08BAD20824D3857500347553 /* Onboarding.storyboard in Resources */,
+				08BAD1FF24D3857500347553 /* TabBar.storyboard in Resources */,
 				3770527323DF3D5500D48D04 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,23 +507,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				37C72D8A23D618DD00A364FF /* AppDelegate.swift in Sources */,
+				08BAD20524D3857500347553 /* Profile.swift in Sources */,
 				3770525A23DF2BAA00D48D04 /* ProfileViewModel.swift in Sources */,
+				08BAD20324D3857500347553 /* EXNavigationController.swift in Sources */,
+				08BAD1FE24D3857500347553 /* UANavigationTab.swift in Sources */,
 				3770525023DF2B8100D48D04 /* StackCoordinator.swift in Sources */,
+				08BAD20624D3857500347553 /* CommonCoordinator.swift in Sources */,
 				081978972482A7AE00A24942 /* TabBarItemView.swift in Sources */,
+				08BAD21F24D3858100347553 /* ToDoListViewController.swift in Sources */,
+				08BAD22124D3858100347553 /* ShowToDoItemAction.swift in Sources */,
 				3770527E23DF42B700D48D04 /* UserStateReducer.swift in Sources */,
 				3770527623DF3D5500D48D04 /* LoginViewModel.swift in Sources */,
+				08BAD20924D3857500347553 /* ShowOnboardingAction.swift in Sources */,
+				08BAD20A24D3857500347553 /* OnboardingViewController.swift in Sources */,
 				37C72E0123D98BD700A364FF /* AppConfigurator.swift in Sources */,
+				08BAD22224D3858100347553 /* ToDoItemViewController.swift in Sources */,
+				08BAD20024D3857500347553 /* TabBarViewController.swift in Sources */,
 				3770526C23DF2BE600D48D04 /* ShowTestStackAction.swift in Sources */,
+				08BAD21D24D3858100347553 /* ShowToDoListAction.swift in Sources */,
+				08BAD20724D3857500347553 /* EXApplicationState.swift in Sources */,
+				08BAD20B24D3857500347553 /* OnboardingViewModel.swift in Sources */,
 				37C72D8C23D618DD00A364FF /* SceneDelegate.swift in Sources */,
+				08BAD20224D3857500347553 /* EXTabItemView.swift in Sources */,
 				08A8FD8B24C7222700A7A9F7 /* EXUIApplication.swift in Sources */,
+				08BAD21C24D3858100347553 /* ToDoCoordinator.swift in Sources */,
 				3770526D23DF2BE600D48D04 /* TestStackViewModel.swift in Sources */,
 				3770525923DF2BAA00D48D04 /* ShowProfileAction.swift in Sources */,
+				08BAD20424D3857500347553 /* EXBaseViewController.swift in Sources */,
 				3770527523DF3D5500D48D04 /* ShowLoginAction.swift in Sources */,
+				08BAD22024D3858100347553 /* ToDoListViewModel.swift in Sources */,
 				3770524E23DF2B7600D48D04 /* ProfileCoordinator.swift in Sources */,
 				3770526B23DF2BE600D48D04 /* TestStackViewController.swift in Sources */,
 				3770527423DF3D5500D48D04 /* LoginViewController.swift in Sources */,
 				3770525823DF2BAA00D48D04 /* ProfileViewController.swift in Sources */,
 				3770528023DF47BF00D48D04 /* StoreActions.swift in Sources */,
+				08BAD22324D3858100347553 /* ToDoItemViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,11 +556,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		08A8FD9524C7252700A7A9F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EXCommon;
-			targetProxy = 08A8FD9424C7252700A7A9F7 /* PBXContainerItemProxy */;
-		};
 		37C72D9E23D618DE00A364FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 37C72D8523D618DD00A364FF /* ReMVVMExample */;
@@ -718,7 +806,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		08A8FD9624C7255200A7A9F7 /* Frameworks */ = {
+		087739B424D389AC0043952B /* Frameworks */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Frameworks;
 		};

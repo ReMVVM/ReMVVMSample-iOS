@@ -8,7 +8,6 @@
 
 import ReMVVM
 import ReMVVMExt
-import EXCommon
 
 class StackCoordinator {
 

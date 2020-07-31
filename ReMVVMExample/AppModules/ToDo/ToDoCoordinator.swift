@@ -8,14 +8,12 @@
 
 import ReMVVM
 import ReMVVMExt
-import EXCommon
 
 public class ToDoCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
             ShowToDoListActionHandler().any,
-            ShowToDoList1ActionHandler().any,
             ShowToDoItemActionHandler().any
         ]
     }

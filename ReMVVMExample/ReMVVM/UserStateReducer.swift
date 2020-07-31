@@ -7,7 +7,6 @@
 //
 
 import ReMVVM
-import EXCommon
 
 public enum UserStateReducers {
 
