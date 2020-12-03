@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct User: Codable {
+public struct User: Codable {
 
     let username: String
 
-    init(username: String = "jane_doe") {
+    public init(username: String = "jane_doe") {
         self.username = username
     }
 
