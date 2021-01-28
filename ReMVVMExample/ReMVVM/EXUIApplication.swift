@@ -120,8 +120,6 @@ private extension EXNavigationTab {
         }
         controls.forEach(stack.addArrangedSubview)
 
-        return CustomControlsResult(height: 100,
-                                    overelay: stack,
-                                    controls: controls)
+        return CustomControlsResult(height: { 100 }, overelay: stack, controls: controls)
     }
 }

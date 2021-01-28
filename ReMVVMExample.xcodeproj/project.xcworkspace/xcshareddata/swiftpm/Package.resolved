@@ -23,17 +23,8 @@
         "package": "ReMVVM",
         "repositoryURL": "https://github.com/dgrzeszczak/ReMVVM",
         "state": {
-          "branch": "feature/2.1.0",
-          "revision": "4e486b5df793fb4bc1aa0a50f08add7b1c649096",
-          "version": null
-        }
-      },
-      {
-        "package": "ReMVVMExt",
-        "repositoryURL": "https://github.com/ReMVVM/ReMVVMExt-iOS",
-        "state": {
-          "branch": "feature/tabBar2",
-          "revision": "bda765febc00d74197c4e2bc74a8084934acf090",
+          "branch": "feature/Combine",
+          "revision": "38ba0c8fbf3d16d810f3d3ddc331ac918cccf94e",
           "version": null
         }
       },

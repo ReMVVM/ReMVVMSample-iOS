@@ -12,26 +12,26 @@ import ReMVVMExt
 // probably not needed anymoore as far there is no need foor custom nav 
 //public typealias EXApplicationState = NavigationStateIOS<ApplicationState>
 
-public struct ApplicationState {
+struct ApplicationState {
 
-    public static let empty = ApplicationState()
+    static let empty = ApplicationState()
 
-    public let userState: UserState
+    let userState: UserState
 
-    public init(userState: UserState = .empty) {
+    init(userState: UserState = .empty) {
 
         self.userState = userState
     }
 }
 
-public struct UserState {
-    public let user: User?
+struct UserState {
+    let user: User?
 
-    public var isLoggedIn: Bool { return user != nil }
+    var isLoggedIn: Bool { return user != nil }
 
-    public static let empty = UserState(user: nil)
+    static let empty = UserState(user: nil)
 
-    public init(user: User?) {
+    init(user: User?) {
         self.user = user
     }
 }
