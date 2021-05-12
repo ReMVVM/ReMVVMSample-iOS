@@ -15,14 +15,14 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(
-            name: "ReMVVMExt",
-            path: "../../ReMVVMExt-iOS")
 //        .package(
 //            name: "ReMVVMExt",
-//            url: "https://github.com/ReMVVM/ReMVVMExt-iOS",
-//            .branch("feature/tabBar2")
-//        )
+//            path: "../../ReMVVMExt")
+        .package(
+            name: "ReMVVMExt",
+            url: "https://github.com/ReMVVM/ReMVVMExt-iOS",
+            .branch("feature/Combine")
+        )
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

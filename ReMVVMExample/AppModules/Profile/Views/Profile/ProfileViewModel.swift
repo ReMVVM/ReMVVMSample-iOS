@@ -33,7 +33,7 @@ struct ProfileViewModel: Initializable, StateAssociated, ReMVVMDriven {
         return state.map { $0.user?.username }
     }
 
-    private let state = remvvm.stateSubject.rx.state
+    private let state = remvvm.source.rx.state
 
     private let disposeBag = DisposeBag()
 

@@ -19,7 +19,7 @@ struct OnboardingViewModel: Initializable, StateAssociated, ReMVVMDriven {
 
     var isLoggedIn: Observable<Bool> { return state.map { $0.isLoggedIn } }
 
-    private let state = remvvm.stateSubject.rx.state
+    private let state = remvvm.source.rx.state
 
     init() { }
 

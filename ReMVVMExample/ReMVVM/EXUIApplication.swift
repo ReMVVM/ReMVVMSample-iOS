@@ -17,7 +17,7 @@ struct EXUIApplication {
 
     public static func initialize(with window: UIWindow,
                                   middlewares: [AnyMiddleware],
-                                  state: ApplicationState = .empty) -> Dispatcher & Subject {
+                                  state: ApplicationState = .empty) -> Dispatcher & Source {
 
         EXUIApplication.setupStyles()
         
