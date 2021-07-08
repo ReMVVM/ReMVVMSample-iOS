@@ -9,19 +9,19 @@
 import ReMVVM
 import ReMVVMExt
 
-class ToDoCoordinator {
+public class ToDoCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
-            ShowToDoListActionHandler(),
-            ShowToDoItemActionHandler()
+            ShowToDoListActionHandler().any,
+            ShowToDoItemActionHandler().any
         ]
     }
 
-    private let store: Store<EXApplicationState>
+    private let dispatcher: Dispatcher
 
-    init(store: Store<EXApplicationState>) {
-        self.store = store
+    public init(dispatcher: Dispatcher) {
+        self.dispatcher = dispatcher
     }
 
 }

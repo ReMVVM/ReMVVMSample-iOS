@@ -10,43 +10,17 @@ import Foundation
 import ReMVVM
 import ReMVVMExt
 
-public enum EXNavigationTab: String, CaseIterable, NavigationTab {
+public enum EXNavigationTab: String, CaseIterable, NavigationItem {
+
+    case todo = "TO-DO"
+    case profile = "Profile"
+    case stack = "Stack"
+
     public var action: StoreAction {
         switch self {
         case .profile: return ShowProfileAction()
         case .stack: return ShowTestStackAction.showOnTab
         case .todo: return ShowToDoListAction()
         }
-    }
-
-    case todo = "TO-DO"
-    case profile = "Profile"
-    case stack = "Stack"
-
-    public var title: String {
-        return self.rawValue
-    }
-
-    public var iconImageName: String {
-        switch self {
-        case .todo:
-            return "list"
-        case .stack:
-            return "transfer"
-        case .profile:
-            return "user"
-        }
-    }
-
-    public var iconImageNameActive: String {
-        return iconImageName
-    }
-
-    public var iconImage: Data {
-        return UIImage(named: iconImageName)?.pngData() ?? Data()
-    }
-
-    public var iconImageActive: Data {
-        return UIImage(named: iconImageNameActive)?.pngData() ?? Data()
     }
 }

@@ -12,13 +12,16 @@ import ReMVVMExt
 
 enum Onboarding: Storyboard, HasInitialController { }
 
-struct ShowOnboardingAction: StoreAction { }
+public struct ShowOnboardingAction: StoreAction {
+    public init() { }
+}
 
 struct ShowOnboardingActionHandler: Middleware {
 
-    func onNext(for state: EXApplicationState,
+
+    func onNext(for state: ApplicationState,
                 action: ShowOnboardingAction,
-                interceptor: Interceptor<ShowOnboardingAction, EXApplicationState>,
+                interceptor: Interceptor<ShowOnboardingAction, ApplicationState>,
                 dispatcher: Dispatcher) {
 
         let factory = CompositeViewModelFactory()

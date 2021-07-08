@@ -13,14 +13,14 @@ class StackCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
-            ShowTestStackActionHandler()
+            ShowTestStackActionHandler().any
         ]
     }
 
-    private let store: Store<EXApplicationState>
+    private let dispatcher: Dispatcher
 
-    init(store: Store<EXApplicationState>) {
-        self.store = store
+    init(dispatcher: Dispatcher) {
+        self.dispatcher = dispatcher
     }
 
 }

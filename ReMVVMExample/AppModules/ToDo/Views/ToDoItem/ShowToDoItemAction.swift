@@ -16,7 +16,7 @@ struct ShowToDoItemAction: StoreAction { }
 
 struct ShowToDoItemActionHandler: ConvertActionMiddleware {
 
-    func convert(action: ShowToDoItemAction, state: EXApplicationState) -> Push {
+    func convert(action: ShowToDoItemAction, state: ApplicationState) -> Push {
         let factory = CompositeViewModelFactory()
         return Push(loader: ToDoItem.initialViewController, factory: factory)
     }

@@ -12,13 +12,11 @@ import ReMVVMExt
 
 enum ToDoList: Storyboard, HasInitialController { }
 
-struct ShowToDoListAction: StoreAction { }
-
 struct ShowToDoListActionHandler: ConvertActionMiddleware {
 
-	func convert(action: ShowToDoListAction, state: EXApplicationState) -> ShowOnTab {
+	func convert(action: ShowToDoListAction, state: ApplicationState) -> Show {
         let factory = CompositeViewModelFactory()
-        return ShowOnTab(tab: EXNavigationTab.todo, loader: ToDoList.initialViewController, factory: factory)
+        return Show(on: EXNavigationTab.todo, loader: ToDoList.initialViewController, factory: factory)
     }
 
 }

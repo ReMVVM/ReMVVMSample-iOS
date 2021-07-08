@@ -12,15 +12,11 @@ import ReMVVMExt
 
 enum TestStack: Storyboard, HasInitialController { }
 
-enum ShowTestStackAction: StoreAction {
-    case showOnTab, showModal, push
-}
-
 struct ShowTestStackActionHandler: Middleware {
 
-    func onNext(for state: EXApplicationState,
+    func onNext(for state: ApplicationState,
                 action: ShowTestStackAction,
-                interceptor: Interceptor<ShowTestStackAction, EXApplicationState>,
+                interceptor: Interceptor<ShowTestStackAction, ApplicationState>,
                 dispatcher: Dispatcher) {
 
         let loader = TestStack.initialViewController
@@ -32,7 +28,7 @@ struct ShowTestStackActionHandler: Middleware {
             storeAction = ShowModal(loader: loader, factory: factory)
         case .showOnTab:
             let factory = CompositeViewModelFactory { TestStackViewModel(isOnModal: false) }
-            storeAction = ShowOnTab(tab: EXNavigationTab.stack,
+            storeAction = Show(on: EXNavigationTab.stack,
                                     loader: loader,
                                     factory: factory)
         case .push:

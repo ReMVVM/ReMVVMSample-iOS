@@ -12,13 +12,11 @@ import ReMVVMExt
 
 enum Profile: Storyboard, HasInitialController { }
 
-struct ShowProfileAction: StoreAction { }
-
 struct ShowProfileActionHandler: ConvertActionMiddleware {
 
-	func convert(action: ShowProfileAction, state: EXApplicationState) -> ShowOnTab {
+	func convert(action: ShowProfileAction, state: ApplicationState) -> Show {
         let factory = CompositeViewModelFactory()
-        return ShowOnTab(tab: EXNavigationTab.profile, loader: Profile.initialViewController, factory: factory)
+        return Show(on: EXNavigationTab.profile, loader: Profile.initialViewController, factory: factory)
     }
 
 }

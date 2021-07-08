@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EXNavigationController: UINavigationController {
+public class EXNavigationController: UINavigationController {
 
     private let backButton = { return UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) }()
 

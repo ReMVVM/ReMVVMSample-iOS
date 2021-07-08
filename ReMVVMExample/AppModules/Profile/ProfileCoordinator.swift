@@ -14,16 +14,16 @@ class ProfileCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
-            ShowLoginActionHandler(),
-            ShowProfileActionHandler()
+            ShowLoginActionHandler().any,
+            ShowProfileActionHandler().any,
         ]
     }
 
-    private let store: Store<EXApplicationState>
+    private let dispatcher: Dispatcher
     private let disposeBag = DisposeBag()
 
-    init(store: Store<EXApplicationState>) {
-        self.store = store
+    init(dispatcher: Dispatcher) {
+        self.dispatcher = dispatcher
     }
 
 }

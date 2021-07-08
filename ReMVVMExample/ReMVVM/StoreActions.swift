@@ -7,6 +7,7 @@
 //
 
 import ReMVVM
+import ReMVVMExt
 
 struct EXStoreActions {
     struct User { }

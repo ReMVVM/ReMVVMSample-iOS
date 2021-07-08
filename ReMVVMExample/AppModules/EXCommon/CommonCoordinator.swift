@@ -8,24 +8,35 @@
 
 import ReMVVM
 import RxSwift
+import ReMVVMExt
 
-class CommonCoordinator {
+public enum ShowTestStackAction: StoreAction {
+    case showOnTab, showModal, push
+}
+
+public struct ShowLoginAction: StoreAction { }
+
+public struct ShowProfileAction: StoreAction { }
+
+public struct ShowToDoListAction: StoreAction { }
+
+public class CommonCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
-            ShowOnboardingActionHandler()
+            ShowOnboardingActionHandler().any
         ]
     }
 
-    private let store: Store<EXApplicationState>
+    private let dispatcher: Dispatcher
     private let disposeBag = DisposeBag()
 
-    init(store: Store<EXApplicationState>) {
-        self.store = store
+    public init(dispatcher: Dispatcher) {
+        self.dispatcher = dispatcher
 
         // Show onboardin
         //store.dispatch(action: ShowOnboardingAction())
-        store.dispatch(action: ShowTestStackAction.showOnTab)
+        dispatcher.dispatch(action: ShowTestStackAction.showOnTab)
 
     }
 
