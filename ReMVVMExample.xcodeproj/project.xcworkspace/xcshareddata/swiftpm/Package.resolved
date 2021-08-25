@@ -11,29 +11,29 @@
         }
       },
       {
-        "package": "MVVM",
-        "repositoryURL": "https://github.com/dgrzeszczak/MVVM",
-        "state": {
-          "branch": null,
-          "revision": "178ab99ea3286629975c728cbeb68d0dcd0a3c33",
-          "version": "1.0.1"
-        }
-      },
-      {
         "package": "ReMVVM",
-        "repositoryURL": "https://github.com/dgrzeszczak/ReMVVM",
+        "repositoryURL": "https://github.com/ReMVVM/ReMVVM",
         "state": {
           "branch": "feature/Combine",
-          "revision": "8097ed72575a73eea53f4baed14e442d0aea66f3",
+          "revision": "fbb31b582a85efe4cf81f01fe9dee508a9e8ee37",
           "version": null
         }
       },
       {
         "package": "ReMVVMExt",
-        "repositoryURL": "https://github.com/ReMVVM/ReMVVMExt-iOS",
+        "repositoryURL": "https://github.com/ReMVVM/ReMVVMExtUIKit",
         "state": {
           "branch": "feature/Combine",
-          "revision": "b46fad98c89cadfb9a5efdd24a06daa10fa12fdf",
+          "revision": "310ac1c7209fd4057c40929d5f43f520c3192314",
+          "version": null
+        }
+      },
+      {
+        "package": "ReMVVMRxSwift",
+        "repositoryURL": "https://github.com/ReMVVM/ReMVVMRxSwift",
+        "state": {
+          "branch": "master",
+          "revision": "259b468878fb58aca005ea735f1df946e91cf89e",
           "version": null
         }
       },

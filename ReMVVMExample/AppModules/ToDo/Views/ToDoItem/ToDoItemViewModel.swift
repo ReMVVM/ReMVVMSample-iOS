@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import RxSwift
 
 public struct ToDoItemViewModel: Initializable {

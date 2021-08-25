@@ -10,17 +10,16 @@ let package = Package(
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "Frameworks",
-            //type: .dynamic,
+            type: .dynamic,
             targets: ["Frameworks"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-//        .package(
-//            name: "ReMVVMExt",
-//            path: "../../ReMVVMExt")
+        //.package(name: "ReMVVMExt", path: "../../ReMVVMExt"),
+        //.package(name: "ReMVVM", path: "../../ReMVVM"),
         .package(
             name: "ReMVVMExt",
-            url: "https://github.com/ReMVVM/ReMVVMExt-iOS",
+            url: "https://github.com/ReMVVM/ReMVVMExtUIKit",
             .branch("feature/Combine")
         )
     ],
@@ -29,7 +28,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "Frameworks",
-            dependencies: ["ReMVVMExt"]),
+            dependencies: [
+                "ReMVVMExt"
+            ]),
         .testTarget(
             name: "FrameworksTests",
             dependencies: ["Frameworks"]),

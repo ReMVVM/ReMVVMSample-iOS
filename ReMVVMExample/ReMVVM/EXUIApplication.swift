@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 import UIKit
 import Loaders
@@ -14,6 +14,15 @@ import Loaders
 enum LaunchScreen: Storyboard, HasInitialController { }
 
 struct EXUIApplication {
+
+    enum ApplicationStateReducer: Reducer {
+
+        static func reduce(state: ApplicationState, with action: StoreAction) -> ApplicationState {
+            ApplicationState(
+                userState: UserStateReducers.reduce(state: state.userState, with: action)
+            )
+        }
+    }
 
     public static func initialize(with window: UIWindow,
                                   middlewares: [AnyMiddleware],
@@ -28,10 +37,6 @@ struct EXUIApplication {
                                           navigationConfigs: [tabConfig],
                                           navigationBarHidden: true)
 
-        let reducer = AnyReducer { state, action -> ApplicationState in
-            ApplicationState(userState: UserStateReducers.reduce(state: state.userState, with: action))
-        }
-
         let stateMappers: [StateMapper<ApplicationState>] = [
             StateMapper(for: \.userState)
         ]
@@ -40,7 +45,7 @@ struct EXUIApplication {
                                                window: window,
                                                uiStateConfig: uiStateConfig,
                                                stateMappers: stateMappers,
-                                               reducer: reducer,
+                                               reducer: ApplicationStateReducer.self,
                                                middleware: middlewares)
 
         return store

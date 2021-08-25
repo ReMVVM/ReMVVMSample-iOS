@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 import RxSwift
 
@@ -14,8 +14,8 @@ class ProfileCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
-            ShowLoginActionHandler().any,
-            ShowProfileActionHandler().any,
+            ShowLoginActionHandler(),
+            ShowProfileActionHandler(),
         ]
     }
 

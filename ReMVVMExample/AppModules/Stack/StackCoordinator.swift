@@ -6,14 +6,14 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 
 class StackCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
-            ShowTestStackActionHandler().any
+            ShowTestStackActionHandler()
         ]
     }
 

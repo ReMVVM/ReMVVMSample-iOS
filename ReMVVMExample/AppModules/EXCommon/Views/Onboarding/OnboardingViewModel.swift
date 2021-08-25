@@ -6,20 +6,18 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import RxSwift
 
-struct OnboardingViewModel: Initializable, StateAssociated, ReMVVMDriven {
+struct OnboardingViewModel: Initializable {
 
-    typealias State = UserState
+    @ReMVVM.State private var userState: UserState?
 
     let title = Observable.just("Onboarding")
     let homeTitle = Observable.just("Home")
     let loginTitle = Observable.just("Login")
 
-    var isLoggedIn: Observable<Bool> { return state.map { $0.isLoggedIn } }
-
-    private let state = remvvm.source.rx.state
+    var isLoggedIn: Observable<Bool> { return _userState.rx.state.map { $0.isLoggedIn } }
 
     init() { }
 

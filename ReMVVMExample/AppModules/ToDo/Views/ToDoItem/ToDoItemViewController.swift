@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 import RxCocoa
 import RxSwift
@@ -14,7 +14,7 @@ import UIKit
 
 class ToDoItemViewController: EXBaseViewController {
 
-    @Provided private var mainViewModel: ToDoItemViewModel?
+    @ReMVVM.ViewModel private var mainViewModel: ToDoItemViewModel?
 
     private let disposeBag = DisposeBag()
 

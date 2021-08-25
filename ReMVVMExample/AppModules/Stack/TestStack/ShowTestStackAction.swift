@@ -7,7 +7,7 @@
 //
 
 import Loaders
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 
 enum TestStack: Storyboard, HasInitialController { }

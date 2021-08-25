@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 import RxCocoa
 import RxSwift
@@ -22,7 +22,8 @@ class LoginViewController: EXBaseViewController {
 
     @IBOutlet private var errorLabel: UILabel!
 
-    @Provided private var mainViewModel: LoginViewModel?
+    @ReMVVM.ViewModel private var mainViewModel: LoginViewModel?
+    @ReMVVM.Dispatcher private var dispatcher
 
     private let disposeBag = DisposeBag()
 
@@ -54,7 +55,7 @@ class LoginViewController: EXBaseViewController {
                 if case .success = result { return DismissModal() }
                 return nil
             }
-            .bind(to: remvvm.rx)
+            .bind(to: _dispatcher.rx)
             .disposed(by: disposeBag)
 
     }

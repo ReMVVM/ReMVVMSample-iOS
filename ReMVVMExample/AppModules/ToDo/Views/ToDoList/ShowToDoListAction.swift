@@ -7,16 +7,16 @@
 //
 
 import Loaders
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 
 enum ToDoList: Storyboard, HasInitialController { }
 
-struct ShowToDoListActionHandler: ConvertActionMiddleware {
-
-	func convert(action: ShowToDoListAction, state: ApplicationState) -> Show {
+struct ShowToDoListActionHandler: ConvertMiddleware {
+    
+    func onNext(for state: ApplicationState, action: ShowToDoListAction, dispatcher: Dispatcher) {
         let factory = CompositeViewModelFactory()
-        return Show(on: EXNavigationTab.todo, loader: ToDoList.initialViewController, factory: factory)
+        let action = Show(on: EXNavigationTab.todo, loader: ToDoList.initialViewController, factory: factory)
+        dispatcher.dispatch(action: action)
     }
-
 }

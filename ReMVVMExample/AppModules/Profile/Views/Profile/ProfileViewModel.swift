@@ -6,12 +6,13 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import RxSwift
 
-struct ProfileViewModel: Initializable, StateAssociated, ReMVVMDriven {
+struct ProfileViewModel: Initializable {
 
-    typealias State = UserState
+    @ReMVVM.State private var userState: UserState?
+    @ReMVVM.Dispatcher private var dispatcher
 
     let logoutSubject = PublishSubject<Void>()
 
@@ -33,14 +34,15 @@ struct ProfileViewModel: Initializable, StateAssociated, ReMVVMDriven {
         return state.map { $0.user?.username }
     }
 
-    private let state = remvvm.source.rx.state
+    private let state: Observable<UserState>
 
     private let disposeBag = DisposeBag()
 
     init() {
+        state = _userState.rx.state
         logoutSubject.asObservable()
             .map { EXStoreActions.User.SetUserAction(user: nil) }
-            .bind(to: remvvm.rx)
+            .bind(to: _dispatcher.rx)
             .disposed(by: disposeBag)
     }
 

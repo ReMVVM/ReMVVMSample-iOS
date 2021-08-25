@@ -6,10 +6,8 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
-import ReMVVMExt
 import UIKit
 
-open class EXBaseViewController: UIViewController, ReMVVMDriven {
+open class EXBaseViewController: UIViewController {
 
 }

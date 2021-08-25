@@ -7,16 +7,16 @@
 //
 
 import Loaders
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 
 enum Profile: Storyboard, HasInitialController { }
 
-struct ShowProfileActionHandler: ConvertActionMiddleware {
+struct ShowProfileActionHandler: ConvertMiddleware {
 
-	func convert(action: ShowProfileAction, state: ApplicationState) -> Show {
+    func onNext(for state: ApplicationState, action: ShowProfileAction, dispatcher: Dispatcher) {
         let factory = CompositeViewModelFactory()
-        return Show(on: EXNavigationTab.profile, loader: Profile.initialViewController, factory: factory)
+        let action = Show(on: EXNavigationTab.profile, loader: Profile.initialViewController, factory: factory)
+        dispatcher.dispatch(action: action)
     }
-
 }

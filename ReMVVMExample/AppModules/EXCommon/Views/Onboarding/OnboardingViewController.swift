@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 import RxCocoa
 import RxSwift
@@ -17,7 +17,8 @@ class OnboardingViewController: EXBaseViewController {
     @IBOutlet private var loginButton: UIButton!
     @IBOutlet private var homeButton: UIButton!
 
-    @Provided private var mainViewModel: OnboardingViewModel?
+    @ReMVVM.ViewModel private var mainViewModel: OnboardingViewModel?
+    @ReMVVM.Dispatcher private var dispatcher
 
     private let disposeBag = DisposeBag()
 
@@ -40,8 +41,8 @@ class OnboardingViewController: EXBaseViewController {
 
     private func bindView(with viewModel: OnboardingViewModel) {
 
-        loginButton.rx.tap.map { ShowLoginAction() }.bind(to: remvvm.rx).disposed(by: disposeBag)
-        homeButton.rx.tap.map { ShowTestStackAction.showOnTab }.bind(to: remvvm.rx).disposed(by: disposeBag)
+        loginButton.rx.tap.map { ShowLoginAction() }.bind(to: _dispatcher.rx).disposed(by: disposeBag)
+        homeButton.rx.tap.map { ShowTestStackAction.showOnTab }.bind(to: _dispatcher.rx).disposed(by: disposeBag)
 
     }
 

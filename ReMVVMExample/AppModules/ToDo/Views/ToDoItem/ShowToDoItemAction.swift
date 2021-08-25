@@ -7,18 +7,18 @@
 //
 
 import Loaders
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 
 enum ToDoItem: Storyboard, HasInitialController { }
 
 struct ShowToDoItemAction: StoreAction { }
 
-struct ShowToDoItemActionHandler: ConvertActionMiddleware {
+struct ShowToDoItemActionHandler: ConvertMiddleware {
 
-    func convert(action: ShowToDoItemAction, state: ApplicationState) -> Push {
+    func onNext(for state: ApplicationState, action: ShowToDoItemAction, dispatcher: Dispatcher) {
         let factory = CompositeViewModelFactory()
-        return Push(loader: ToDoItem.initialViewController, factory: factory)
+        let action = Push(loader: ToDoItem.initialViewController, factory: factory)
+        dispatcher.dispatch(action: action)
     }
-
 }

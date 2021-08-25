@@ -6,7 +6,6 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
 import RxSwift
 
 struct TestStackViewModel {

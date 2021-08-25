@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 
 public enum EXNavigationTab: String, CaseIterable, NavigationItem {

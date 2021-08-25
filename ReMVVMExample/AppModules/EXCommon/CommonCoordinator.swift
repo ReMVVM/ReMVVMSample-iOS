@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import RxSwift
 import ReMVVMExt
 
@@ -24,7 +24,7 @@ public class CommonCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
-            ShowOnboardingActionHandler().any
+            ShowOnboardingActionHandler()
         ]
     }
 

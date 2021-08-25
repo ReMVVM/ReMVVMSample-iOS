@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 import RxSwift
 
@@ -15,9 +15,10 @@ enum LoginResult {
     case error(String)
 }
 
-struct LoginViewModel: Initializable, StateAssociated, ReMVVMDriven {
+struct LoginViewModel: Initializable {
 
-    typealias State = UserState
+    @ReMVVM.State private var state: UserState?
+    @ReMVVM.Dispatcher private var dispatcher
 
     var result: Observable<LoginResult>
 
@@ -51,7 +52,7 @@ struct LoginViewModel: Initializable, StateAssociated, ReMVVMDriven {
 
         queryResult.compactMap { $0.user }
             .map { EXStoreActions.User.SetUserAction(user: $0) }
-            .bind(to: remvvm.rx)
+            .bind(to: _dispatcher.rx)
             .disposed(by: disposeBag)
 
     }

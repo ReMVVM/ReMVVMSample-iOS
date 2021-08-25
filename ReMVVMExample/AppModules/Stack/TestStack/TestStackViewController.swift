@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 import RxCocoa
 import RxSwift
@@ -18,7 +18,8 @@ class TestStackViewController: EXBaseViewController {
     @IBOutlet private var modalButton: UIButton!
     @IBOutlet private var dismissModalButton: UIButton!
 
-    @Provided private var mainViewModel: TestStackViewModel?
+    @ReMVVM.ViewModel private var mainViewModel: TestStackViewModel?
+    @ReMVVM.Dispatcher private var dispatcher
 
     private let disposeBag = DisposeBag()
 
@@ -40,9 +41,9 @@ class TestStackViewController: EXBaseViewController {
 
     private func bindView(with viewModel: TestStackViewModel) {
 
-        pushButton.rx.tap.map { ShowTestStackAction.push }.bind(to: remvvm.rx).disposed(by: disposeBag)
-        modalButton.rx.tap.map { ShowTestStackAction.showModal }.bind(to: remvvm.rx).disposed(by: disposeBag)
-        dismissModalButton.rx.tap.map { DismissModal() }.bind(to: remvvm.rx).disposed(by: disposeBag)
+        pushButton.rx.tap.map { ShowTestStackAction.push }.bind(to: _dispatcher.rx).disposed(by: disposeBag)
+        modalButton.rx.tap.map { ShowTestStackAction.showModal }.bind(to: _dispatcher.rx).disposed(by: disposeBag)
+        dismissModalButton.rx.tap.map { DismissModal() }.bind(to: _dispatcher.rx).disposed(by: disposeBag)
     }
 
 }

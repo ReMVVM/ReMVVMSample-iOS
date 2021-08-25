@@ -7,13 +7,11 @@
 //
 
 import Loaders
-import ReMVVM
-import ReMVVMExt
 import RxCocoa
 import RxSwift
 import UIKit
 
-open class TabBarItemView: UIControl, ReMVVMDriven {
+open class TabBarItemView: UIControl {
 
     var title: String? = nil { didSet { setup() } }
     var iconImage: UIImage? = nil { didSet { setup() } }

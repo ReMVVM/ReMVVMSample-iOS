@@ -6,15 +6,15 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 
 public class ToDoCoordinator {
 
     public static func createMiddlewares() -> [AnyMiddleware] {
         return [
-            ShowToDoListActionHandler().any,
-            ShowToDoItemActionHandler().any
+            ShowToDoListActionHandler(),
+            ShowToDoItemActionHandler()
         ]
     }
 

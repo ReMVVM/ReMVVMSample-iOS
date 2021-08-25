@@ -6,7 +6,7 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 import ReMVVMExt
 import RxCocoa
 import RxSwift
@@ -18,7 +18,8 @@ class ProfileViewController: EXBaseViewController {
     @IBOutlet private var onboardingButton: UIButton!
     @IBOutlet private var logoutButton: UIButton!
 
-    @Provided private var mainViewModel: ProfileViewModel?
+    @ReMVVM.ViewModel private var mainViewModel: ProfileViewModel?
+    @ReMVVM.Dispatcher private var dispatcher
 
     private let disposeBag = DisposeBag()
 
@@ -40,7 +41,7 @@ class ProfileViewController: EXBaseViewController {
 
     private func bindView(with viewModel: ProfileViewModel) {
         logoutButton.rx.tap.bind(to: viewModel.logoutSubject).disposed(by: disposeBag)
-        onboardingButton.rx.tap.map { ShowOnboardingAction() }.bind(to: remvvm.rx).disposed(by: disposeBag)
+        onboardingButton.rx.tap.map { ShowOnboardingAction() }.bind(to: _dispatcher.rx).disposed(by: disposeBag)
     }
 
 }

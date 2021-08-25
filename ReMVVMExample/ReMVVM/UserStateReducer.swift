@@ -6,22 +6,18 @@
 //  Copyright © 2020 MOBIGREG. All rights reserved.
 //
 
-import ReMVVM
+import ReMVVMCore
 
-public enum UserStateReducers {
+enum UserStateReducers: Reducer {
+
+    static let reducers = SetUserReducer.self
 
     static func reduce(state: UserState, with action: StoreAction) -> UserState {
-        return reducer.reduce(state: state, with: action)
+        return reducers.reduce(state: state, with: action)
     }
-
-    static let reducer = AnyReducer(with: reducers)
-    static let reducers: [AnyReducer<UserState>] = [
-        SetUserReducer.any
-    ]
-
 }
 
-struct SetUserReducer: Reducer {
+enum SetUserReducer: Reducer {
 
     typealias Action = EXStoreActions.User.SetUserAction
 
