@@ -5,36 +5,36 @@
         "package": "Loaders",
         "repositoryURL": "https://github.com/dgrzeszczak/Loaders",
         "state": {
-          "branch": "feature/bundleModule",
-          "revision": "4791afe16c1523a43b350687aff31069a6c0eb73",
-          "version": null
+          "branch": null,
+          "revision": "56a5148b8025b70caaf8a3537777a02be595087a",
+          "version": "1.2.0"
         }
       },
       {
         "package": "ReMVVM",
         "repositoryURL": "https://github.com/ReMVVM/ReMVVM",
         "state": {
-          "branch": "feature/Combine",
-          "revision": "fbb31b582a85efe4cf81f01fe9dee508a9e8ee37",
-          "version": null
+          "branch": null,
+          "revision": "9b3ff26dc8890c3b153599410044d9d72cc68cfd",
+          "version": "3.0.0"
         }
       },
       {
         "package": "ReMVVMExt",
         "repositoryURL": "https://github.com/ReMVVM/ReMVVMExtUIKit",
         "state": {
-          "branch": "feature/Combine",
-          "revision": "310ac1c7209fd4057c40929d5f43f520c3192314",
-          "version": null
+          "branch": null,
+          "revision": "3b3dfb648d323028398295a939a2b78b95dbeea2",
+          "version": "3.0.0"
         }
       },
       {
         "package": "ReMVVMRxSwift",
         "repositoryURL": "https://github.com/ReMVVM/ReMVVMRxSwift",
         "state": {
-          "branch": "master",
-          "revision": "259b468878fb58aca005ea735f1df946e91cf89e",
-          "version": null
+          "branch": null,
+          "revision": "8cabdf05976da0396a8e9b57c22107e6c54cc9fd",
+          "version": "1.0.0"
         }
       },
       {
