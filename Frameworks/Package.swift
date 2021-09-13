@@ -15,12 +15,13 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        //.package(name: "ReMVVMExt", path: "../../ReMVVMExt"),
-        //.package(name: "ReMVVM", path: "../../ReMVVM"),
+//        .package(name: "ReMVVMExt", path: "../../ReMVVMExt"),
+//        .package(name: "ReMVVM", path: "../../ReMVVM"),
+//        .package(name: "ReMVVMRxSwift", path: "../../ReMVVMRxSwift"),
         .package(
             name: "ReMVVMExt",
             url: "https://github.com/ReMVVM/ReMVVMExtUIKit",
-            .branch("feature/Combine")
+            .upToNextMajor(from: "3.0.0")
         )
     ],
     targets: [
